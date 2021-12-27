@@ -1,9 +1,9 @@
 {
-  "name": "service-example",
+  "name": "affiliates-commission-service",
   "vendor": "vtex",
-  "version": "0.2.0",
-  "title": "Service Example",
-  "description": "Reference app for VTEX IO Services",
+  "version": "0.0.0",
+  "title": "Affiliates commission service",
+  "description": "App that hanldes all related to the commission of affiliates",
   "mustUpdateAt": "2018-01-04",
   "categories": [],
   "dependencies": {},
@@ -16,13 +16,6 @@
   },
   "credentialType": "absolute",
   "policies": [
-    {
-      "name": "outbound-access",
-      "attrs": {
-        "host": "httpstat.us",
-        "path": "*"
-      }
-    },
     {
       "name": "colossus-fire-event"
     },
