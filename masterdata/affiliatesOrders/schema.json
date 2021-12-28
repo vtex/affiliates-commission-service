@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "AffiliatesOrders",
+  "type": "object",
+  "properties": {
+    "affiliateId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "userEmail": {
+      "type": "string"
+    },
+    "orderTotal": {
+      "type": "number"
+    },
+    "orderTotalCommission": {
+      "type": "number"
+    },
+    "orderDate": {
+      "type": "string"
+    },
+    "orderItems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "skuId": {
+            "type": "string"
+          },
+          "skuName": {
+            "type": "string"
+          },
+          "skuImageUrl": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "comission": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  "required": ["affiliateId", "userEmail"],
+  "v-indexed": ["affiliateId", "userEmail", "status"],
+  "v-cache": false
+}
