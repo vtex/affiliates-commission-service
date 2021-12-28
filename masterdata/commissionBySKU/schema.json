@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Commission By SKU",
+  "type": "object",
+  "properties": {
+    "commission": {
+      "type": "number"
+    }
+  },
+  "required": ["commission"],
+  "v-cache": false
+}
