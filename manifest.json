@@ -18,6 +18,26 @@
   "credentialType": "absolute",
   "policies": [
     {
+      "name": "ADMIN_DS"
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "api.vtex.com",
+        "path": "/api/dataentities/*"
+      }
+    },
+    {
+      "name": "AcessaTodosPedidos"
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/api/checkout/pvt/*"
+      }
+    },
+    {
       "name": "colossus-fire-event"
     },
     {
