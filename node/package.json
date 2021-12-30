@@ -13,10 +13,11 @@
     "@vtex/test-tools": "^3.4.1",
     "@vtex/tsconfig": "^0.5.6",
     "typescript": "3.9.7",
-    "vtex.affiliates-commission-service": "https://affiliatescommission--gabrielhosino.myvtex.com/_v/private/typings/linked/v1/vtex.affiliates-commission-service@0.0.0+build1640694618/public/@types/vtex.affiliates-commission-service"
+    "vtex.affiliates-commission-service": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.affiliates-commission-service@0.1.0/public/@types/vtex.affiliates-commission-service"
   },
   "scripts": {
-    "lint": "tsc --noEmit --pretty"
+    "lint": "tsc --noEmit --pretty",
+    "test": "vtex-test-tools test --collectCoverage"
   },
   "version": "0.1.0"
 }
