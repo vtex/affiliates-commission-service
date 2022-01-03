@@ -2,6 +2,9 @@ import type { ClientsConfig, ServiceContext } from '@vtex/api'
 import { Service } from '@vtex/api'
 
 import { Clients } from './clients'
+import { parseData } from './middlewares/parseData'
+import { saveOrUpdateAffiliateOrder } from './middlewares/saveOrUpdateAffiliateOrder'
+import { validateOrder } from './middlewares/validateOrder'
 
 const TIMEOUT_MS = 2 * 1000
 
@@ -26,4 +29,7 @@ declare global {
 // Export a service that defines route handlers and client options.
 export default new Service({
   clients,
+  events: {
+    setAffiliatesOrders: [validateOrder, parseData, saveOrUpdateAffiliateOrder],
+  },
 })

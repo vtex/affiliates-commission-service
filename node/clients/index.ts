@@ -5,6 +5,8 @@ import type {
   CommissionBySKU,
 } from 'vtex.affiliates-commission-service'
 
+import CheckoutExtended from './checkout'
+
 // Extend the default IOClients implementation with our own custom clients.
 export class Clients extends IOClients {
   public get affiliatesOrders() {
@@ -19,5 +21,9 @@ export class Clients extends IOClients {
       'commissionBySKU',
       masterDataFor<CommissionBySKU>('commissionBySKU')
     )
+  }
+
+  public get checkout() {
+    return this.getOrSet('checkout', CheckoutExtended)
   }
 }
