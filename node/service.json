@@ -8,7 +8,7 @@
   "events": {
     "setAffiliatesOrders": {
       "sender": "vtex.orders-broadcast",
-      "topics": ["payment-approved"]
+      "topics": ["order-created"]
     }
   }
 }
