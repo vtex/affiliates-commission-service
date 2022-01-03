@@ -14,7 +14,7 @@ export async function parseData(
 
   try {
     let orderTotalCommission = 0
-    // For now, all items will have the sabe commission value because
+    // For now, all items will have the same commission value because
     // we are working in parallel on different MD entities.
     // TODO: Change the commission value to get the right value per SKU
     const constantCommission = 5
