@@ -4,5 +4,11 @@
   "timeout": 2,
   "minReplicas": 2,
   "maxReplicas": 4,
-  "workers": 1
+  "workers": 1,
+  "events": {
+    "setAffiliatesOrders": {
+      "sender": "vtex.orders-broadcast",
+      "topics": ["payment-approved"]
+    }
+  }
 }
