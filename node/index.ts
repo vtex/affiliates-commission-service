@@ -4,6 +4,7 @@ import { Service } from '@vtex/api'
 import { Clients } from './clients'
 import { parseData } from './middlewares/parseData'
 import { saveOrUpdateAffiliateOrder } from './middlewares/saveOrUpdateAffiliateOrder'
+import { updateOrderStatus } from './middlewares/updateOrderStatus'
 import { validateOrder } from './middlewares/validateOrder'
 
 const TIMEOUT_MS = 2 * 1000
@@ -31,5 +32,6 @@ export default new Service({
   clients,
   events: {
     setAffiliatesOrders: [validateOrder, parseData, saveOrUpdateAffiliateOrder],
+    updateOrderStatus: [validateOrder, updateOrderStatus],
   },
 })
