@@ -5,6 +5,9 @@
   "properties": {
     "commission": {
       "type": "number"
+    },
+    "refId": {
+      "type": "string"
     }
   },
   "required": ["commission"],
