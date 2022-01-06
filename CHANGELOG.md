@@ -21,6 +21,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- CommissionBySKU MD entity and client
+- CommissionBySKUService
+
+### Added
+
 - Checkout client
 - Order payment approved event handler
 
