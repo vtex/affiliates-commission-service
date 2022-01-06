@@ -41,14 +41,15 @@
           "quantity": {
             "type": "number"
           },
-          "comission": {
+          "commission": {
             "type": "number"
           }
-        }
+        },
+        "required": ["skuId", "skuName", "price", "quantity", "commission"]
       }
     }
   },
-  "required": ["affiliateId", "userEmail"],
+  "required": ["affiliateId", "userEmail", "orderItems"],
   "v-indexed": ["affiliateId", "userEmail", "status"],
   "v-cache": false
 }
