@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Required attrs to the affiliatesOrders MD entity
+- Update the updateOrderStatus middleware to consider the new required attrs
+
 ## [0.3.0] - 2022-01-04
 
 ### Added
