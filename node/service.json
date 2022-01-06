@@ -14,7 +14,11 @@
   "events": {
     "setAffiliatesOrders": {
       "sender": "vtex.orders-broadcast",
-      "topics": ["payment-approved"]
+      "topics": ["order-created"]
+    },
+    "updateOrderStatus": {
+      "sender": "vtex.orders-broadcast",
+      "topics": ["payment-approved", "cancel"]
     }
   }
 }
