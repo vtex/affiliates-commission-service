@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - New constants
 - Event handler for the invoiced order from orderBroadcast
 
+## [0.4.1] - 2022-01-07
+
+### Changed
+
+- Required attrs to the affiliatesOrders MD entity
+- Update the updateOrderStatus middleware to consider the new required attrs
+
+## [0.4.0] - 2022-01-06
+
 ## [0.3.0] - 2022-01-04
 
 ### Added
@@ -24,6 +33,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change setAffiliatesOrders event topic to order-created
 
 ## [0.2.0] - 2022-01-03
+
+### Added
+
+- CommissionBySKU MD entity and client
+- CommissionBySKUService
 
 ### Added
 

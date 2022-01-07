@@ -1,11 +1,7 @@
 import type { EventContext } from '@vtex/api'
 
 import type { Clients } from '../clients'
-import {
-  CUSTOM_DATA_FIELD_ID,
-  LOGGER_ERROR_MESSAGES,
-  LOGGER_ERROR_METRICS,
-} from '../utils/constants'
+import { LOGGER_ERROR_MESSAGES, LOGGER_ERROR_METRICS } from '../utils/constants'
 
 export async function updateOrderStatus(
   {
@@ -16,21 +12,14 @@ export async function updateOrderStatus(
   next: () => Promise<unknown>
 ) {
   const {
-    order: {
-      orderId,
-      state: status,
-      clientProfileData: { email },
-    },
-    customData,
+    order: { orderId, state: status },
+    affiliateOrder,
   } = state
-
-  const affiliateId = customData.fields[CUSTOM_DATA_FIELD_ID]
 
   try {
     await affiliatesOrders.update(orderId, {
+      ...affiliateOrder,
       status,
-      userEmail: email,
-      affiliateId,
     })
   } catch (err) {
     logger.error({
