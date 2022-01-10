@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- New order typings
+- New constants
+- Event handler for the invoiced order from orderBroadcast
+
 ## [0.4.1] - 2022-01-07
 
 ### Changed

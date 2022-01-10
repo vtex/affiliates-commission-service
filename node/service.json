@@ -13,6 +13,10 @@
     "updateOrderStatus": {
       "sender": "vtex.orders-broadcast",
       "topics": ["payment-approved", "cancel"]
+    },
+    "updateInvoicedOrder": {
+      "sender": "vtex.orders-broadcast",
+      "topics": ["invoiced"]
     }
   }
 }
