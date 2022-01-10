@@ -1,44 +1,62 @@
 import type { EventContext } from '@vtex/api'
+import type { CustomApps } from '@vtex/clients'
 
 import type { Clients } from '../clients'
+import { CommissionBySKUService } from '../services/CommissionBySKUService'
 import type { OrderItemDetailResponseExtended } from '../typings/order'
-import { CUSTOM_DATA_FIELD_ID } from '../utils/constants'
+import {
+  CUSTOM_DATA_FIELD_ID,
+  LOGGER_ERROR_MESSAGES,
+  LOGGER_ERROR_METRICS,
+} from '../utils/constants'
 
 // This middleware will parse the data to the object the MD expects
 export async function parseData(
-  { state, vtex: { logger } }: EventContext<Clients>,
+  {
+    state,
+    clients: { commissionBySKU },
+    vtex: { logger },
+  }: EventContext<Clients>,
   next: () => Promise<unknown>
 ) {
-  const { order, customData } = state
+  const {
+    order,
+    customData,
+  }: { order: OrderItemDetailResponseExtended; customData: CustomApps } = state
+
   const affiliateId = customData.fields[CUSTOM_DATA_FIELD_ID]
 
   try {
     let orderTotalCommission = 0
-    // For now, all items will have the same commission value because
-    // we are working in parallel on different MD entities.
-    // TODO: Change the commission value to get the right value per SKU
-    const constantCommission = 5
-    const orderItems = order.items.map(
-      (item: OrderItemDetailResponseExtended) => {
-        const { id, skuName, imageUrl, sellingPrice, quantity } = item
+    const itemsIds = order.items.map((item) => {
+      return { id: item.id, commission: 0 }
+    })
 
-        orderTotalCommission +=
-          (quantity * sellingPrice * constantCommission) / 100
-
-        return {
-          skuId: id,
-          skuName,
-          skuImageUrl: imageUrl,
-          price: sellingPrice,
-          quantity,
-          commission: constantCommission,
-        }
-      }
+    const commissionService = new CommissionBySKUService(
+      commissionBySKU,
+      itemsIds
     )
 
-    const orderTotal = order.totals.find(
-      (total: { id: string }) => total.id === 'Items'
-    ).value
+    const commissions = await commissionService.get()
+
+    const orderItems = order.items.map((item) => {
+      const { id, skuName, imageUrl, sellingPrice, quantity } = item
+      const skuCommission = commissions.data.find((sku) => sku.id === id)
+      const commissionValue = skuCommission?.commission as number
+
+      orderTotalCommission += (quantity * sellingPrice * commissionValue) / 100
+
+      return {
+        skuId: id,
+        skuName,
+        skuImageUrl: imageUrl,
+        price: sellingPrice,
+        quantity,
+        commission: commissionValue,
+      }
+    })
+
+    const orderTotal = order.totals.find((total) => total.id === 'Items')?.value
 
     const affiliateOrder = {
       id: order.orderId,
@@ -54,12 +72,12 @@ export async function parseData(
     state.affiliateOrder = affiliateOrder
   } catch (err) {
     logger.error({
-      metric: 'parse-data',
-      message: 'Error parsing the order data',
+      metric: LOGGER_ERROR_METRICS.parseData,
+      message: LOGGER_ERROR_MESSAGES.parseData,
       orderId: order.orderId,
       error: err.message,
     })
-    throw new Error('Error parsing the order data')
+    throw new Error(LOGGER_ERROR_MESSAGES.parseData)
   }
 
   await next()
