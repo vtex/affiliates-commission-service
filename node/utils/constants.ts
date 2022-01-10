@@ -18,10 +18,12 @@ export const LOGGER_ERROR_METRICS = {
   updateOrderStatus: 'update-order-status',
   getAffiliateOrder: 'get-affiliate-order',
   validateChangedItems: 'validate-changed-items',
+  parseData: 'parse-data',
 }
 
 export const LOGGER_ERROR_MESSAGES = {
   updateOrderStatus: 'Error updating the order status',
   getAffiliateOrder: 'Error getting the affiliate order',
   validateChangedItems: 'Error validating the changed items',
+  parseData: 'Error parsing the order data',
 }
