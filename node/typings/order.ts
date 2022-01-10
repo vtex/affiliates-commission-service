@@ -1,12 +1,20 @@
 import type { OrderItemDetailResponse } from '@vtex/clients'
 
+// TODO: Enhance order typings
 export interface OrderItemDetailResponseExtended
   extends OrderItemDetailResponse {
+  orderId: string
   skuName: string
   state: string
   changeData?: {
     changesData: ChangesData[]
   }
+  totals: OrderTotalsItem[]
+  creationDate: string
+  clientProfileData: {
+    email: string
+  }
+  items: OrderItem[]
 }
 
 export type ChangesItem = {
@@ -28,4 +36,18 @@ export interface ChangesData {
     orderId: string
     receipt: string
   }
+}
+
+type OrderTotalsItem = {
+  id: string
+  name: string
+  value: number
+}
+
+type OrderItem = {
+  id: string
+  skuName: string
+  imageUrl: string
+  sellingPrice: number
+  quantity: number
 }
