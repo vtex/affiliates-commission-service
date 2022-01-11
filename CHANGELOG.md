@@ -11,6 +11,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - CommissionBySKU service route
 
+## [0.5.0] - 2022-01-10
+
+### Added
+
+- New order typings
+- New constants
+- Event handler for the invoiced order from orderBroadcast
+
+## [0.4.1] - 2022-01-07
+
+### Changed
+
+- Required attrs to the affiliatesOrders MD entity
+- Update the updateOrderStatus middleware to consider the new required attrs
+
 ## [0.4.0] - 2022-01-06
 
 ### Added

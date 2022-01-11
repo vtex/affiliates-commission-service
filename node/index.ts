@@ -6,9 +6,11 @@ import { parseGetRequest } from './middlewares/commission/parseGetRequest'
 import { getCommissionBySKU } from './middlewares/commission/getCommissionBySKU'
 import { setCommissionBySKU } from './middlewares/commission/setCommissionBySKU'
 import { deleteCommissionBySKU } from './middlewares/commission/deleteCommissionBySKU'
+import { getAffiliateOrder } from './middlewares/getAffiliateOrder'
 import { parseData } from './middlewares/parseData'
 import { saveOrUpdateAffiliateOrder } from './middlewares/saveOrUpdateAffiliateOrder'
 import { updateOrderStatus } from './middlewares/updateOrderStatus'
+import { validateChangedItems } from './middlewares/validateChangedItems'
 import { validateOrder } from './middlewares/validateOrder'
 import type { CommissionServiceInputData } from './typings/commission'
 
@@ -48,6 +50,12 @@ export default new Service({
   },
   events: {
     setAffiliatesOrders: [validateOrder, parseData, saveOrUpdateAffiliateOrder],
-    updateOrderStatus: [validateOrder, updateOrderStatus],
+    updateOrderStatus: [validateOrder, getAffiliateOrder, updateOrderStatus],
+    updateInvoicedOrder: [
+      validateOrder,
+      getAffiliateOrder,
+      validateChangedItems,
+      saveOrUpdateAffiliateOrder,
+    ],
   },
 })
