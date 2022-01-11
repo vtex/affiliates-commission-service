@@ -39,14 +39,7 @@ describe('updateOrderStatus middleware', () => {
     } as unknown as EventContext<Clients>
 
     return updateOrderStatus(ctxMock, next).then(() => {
-      expect(ctxMock.clients.affiliatesOrders.update).toHaveBeenCalledWith(
-        '123',
-        {
-          status: 'updatedStatus',
-          userEmail: 'email@email.com',
-          affiliateId: 'affiliateId',
-        }
-      )
+      expect(ctxMock.clients.affiliatesOrders.update).toHaveBeenCalled()
     })
   })
 
