@@ -1,6 +1,10 @@
 import { json } from 'co-body'
 
-import { SUCCESS } from '../../utils/constants'
+import {
+  LOGGER_ERROR_MESSAGES,
+  LOGGER_ERROR_METRICS,
+  SUCCESS,
+} from '../../utils/constants'
 import { CommissionBySKUService } from '../../services/CommissionBySKUService'
 import type { CommissionServiceInputData } from '../../typings/commission'
 
@@ -25,10 +29,10 @@ export async function setCommissionBySKU(
     ctx.message = JSON.stringify(result)
   } catch (err) {
     logger.error({
-      metric: 'set-commission-by-sku',
+      metric: LOGGER_ERROR_METRICS.setCommissionBySKU,
       message: err.message,
     })
-    throw new Error('Error setting commission by SKU:')
+    throw new Error(LOGGER_ERROR_MESSAGES.setCommissionBySKU)
   }
 
   await next()

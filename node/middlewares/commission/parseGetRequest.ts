@@ -1,4 +1,8 @@
 import type { CommissionServiceInputData } from '../../typings/commission'
+import {
+  LOGGER_ERROR_MESSAGES,
+  LOGGER_ERROR_METRICS,
+} from '../../utils/constants'
 
 export async function parseGetRequest(
   ctx: Context,
@@ -21,10 +25,10 @@ export async function parseGetRequest(
     state.commissionInput = parsedData as CommissionServiceInputData
   } catch (err) {
     logger.error({
-      metric: 'parse-get-commission-request',
+      metric: LOGGER_ERROR_METRICS.parseGetCommissionRequest,
       message: err.message,
     })
-    throw new Error('Error reading query parameters')
+    throw new Error(LOGGER_ERROR_MESSAGES.parseGetCommissionRequest)
   }
 
   await next()
