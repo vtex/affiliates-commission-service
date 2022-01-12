@@ -1,5 +1,5 @@
 import { getAffiliateOrders } from '../../../middlewares/getAffiliateOrders'
-import { HTTP_ERRORS } from '../../../utils/constants'
+import { HTTP_ERRORS, SUCCESS } from '../../../utils/constants'
 
 describe('getAffiliateOrders middleware', () => {
   const next = jest.fn()
@@ -96,7 +96,7 @@ describe('getAffiliateOrders middleware', () => {
     } as unknown as Context
 
     return getAffiliateOrders(ctxMock, next).then(() => {
-      expect(ctxMock.status).toBe(200)
+      expect(ctxMock.status).toBe(SUCCESS)
       expect(ctxMock.body).toStrictEqual({ id: '123', affiliateId: '123' })
     })
   })

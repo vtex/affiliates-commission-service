@@ -3,6 +3,7 @@ import {
   HTTP_ERRORS,
   LOGGER_ERROR_MESSAGES,
   LOGGER_ERROR_METRICS,
+  SUCCESS,
 } from '../utils/constants'
 
 export async function getAffiliateOrders(
@@ -35,7 +36,7 @@ export async function getAffiliateOrders(
       whereQuery
     )
 
-    ctx.status = 200
+    ctx.status = SUCCESS
     ctx.body = result
   } catch (err) {
     ctx.status = HTTP_ERRORS.serverError.status
