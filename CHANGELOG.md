@@ -7,10 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.8.0] - 2022-01-12
+
+### Changed
+
+- Get the variable sku commission in the validateChangedItems middleware
+
+## [0.7.0] - 2022-01-12
+
 ### Changed
 
 - Get the variable sku commission in the parseData middleware
 - Update order types
+
+## [0.6.0] - 2022-01-12
+
+## Added
+
+- CommissionBySKU service route
 
 ## [0.5.0] - 2022-01-10
 
@@ -29,6 +43,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.4.0] - 2022-01-06
 
+### Added
+
+- CommissionBySKU MD entity and client
+- CommissionBySKUService
+
 ## [0.3.0] - 2022-01-04
 
 ### Added
@@ -40,11 +59,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change setAffiliatesOrders event topic to order-created
 
 ## [0.2.0] - 2022-01-03
-
-### Added
-
-- CommissionBySKU MD entity and client
-- CommissionBySKUService
 
 ### Added
 
