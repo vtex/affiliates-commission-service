@@ -17,6 +17,7 @@ export const INVOICED_STATUS = 'invoiced'
 export const LOGGER_ERROR_METRICS = {
   updateOrderStatus: 'update-order-status',
   getAffiliateOrder: 'get-affiliate-order',
+  getAffiliateOrders: 'get-affiliate-orders',
   validateChangedItems: 'validate-changed-items',
   parseData: 'parse-data',
 }
@@ -24,6 +25,31 @@ export const LOGGER_ERROR_METRICS = {
 export const LOGGER_ERROR_MESSAGES = {
   updateOrderStatus: 'Error updating the order status',
   getAffiliateOrder: 'Error getting the affiliate order',
+  getAffiliateOrders: 'Error getting the affiliate orders',
   validateChangedItems: 'Error validating the changed items',
   parseData: 'Error parsing the order data',
 }
+
+export const APP_KEY_HEADER = 'x-vtex-api-appkey'
+export const APP_TOKEN_HEADER = 'x-vtex-api-apptoken'
+
+export const HTTP_ERRORS = {
+  missingAuthentication: {
+    status: 401,
+    message: 'Missing appKey or appToken',
+  },
+  forbidden: {
+    status: 403,
+    message: 'Forbidden',
+  },
+  serverError: {
+    status: 500,
+    message: 'Error processing the request',
+  },
+  missingParams: {
+    status: 400,
+    message: (params: string) => `Missing params: ${params}`,
+  },
+}
+
+export const MD_READ_PERMISSION = 'READONLY_USER_DS'
