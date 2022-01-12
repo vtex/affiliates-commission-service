@@ -1,8 +1,10 @@
 import type { ClientsConfig, ServiceContext } from '@vtex/api'
-import { Service } from '@vtex/api'
+import { method, Service } from '@vtex/api'
 
 import { Clients } from './clients'
+import { authenticateRequest } from './middlewares/authenticateRequest'
 import { getAffiliateOrder } from './middlewares/getAffiliateOrder'
+import { getAffiliateOrders } from './middlewares/getAffiliateOrders'
 import { parseData } from './middlewares/parseData'
 import { saveOrUpdateAffiliateOrder } from './middlewares/saveOrUpdateAffiliateOrder'
 import { updateOrderStatus } from './middlewares/updateOrderStatus'
@@ -32,6 +34,11 @@ declare global {
 // Export a service that defines route handlers and client options.
 export default new Service({
   clients,
+  routes: {
+    affiliateOrders: method({
+      GET: [authenticateRequest, getAffiliateOrders],
+    }),
+  },
   events: {
     setAffiliatesOrders: [validateOrder, parseData, saveOrUpdateAffiliateOrder],
     updateOrderStatus: [validateOrder, getAffiliateOrder, updateOrderStatus],
