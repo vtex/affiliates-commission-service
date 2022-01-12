@@ -2,6 +2,7 @@ import type { EventContext } from '@vtex/api'
 import type { AffiliatesOrders } from 'vtex.affiliates-commission-service'
 
 import type { Clients } from '../clients'
+import { CommissionBySKUService } from '../services/CommissionBySKUService'
 import type {
   ChangesData,
   ChangesItem,
@@ -16,7 +17,11 @@ import {
 // This middleware will parse the data to the object the MD expects
 // It will see the changes made to the order after it is already created
 export async function validateChangedItems(
-  { state, clients: { catalog }, vtex: { logger } }: EventContext<Clients>,
+  {
+    state,
+    clients: { catalog, commissionBySKU },
+    vtex: { logger },
+  }: EventContext<Clients>,
   next: () => Promise<unknown>
 ) {
   const {
@@ -104,8 +109,18 @@ export async function validateChangedItems(
         return catalog.getSkuContext(item.id)
       })
 
-      // TODO: GET COMMISSION BY SKU
-      const tempCommission = 5
+      // Now we create an array with the ids of new skus to get the commission after
+      const newItemsIds = newItems.map((item) => {
+        // TODO: Confirm if commissions types are right
+        return { id: item.id, commission: 0 }
+      })
+
+      const commissionService = new CommissionBySKUService(
+        commissionBySKU,
+        newItemsIds
+      )
+
+      const commissions = await commissionService.get()
 
       // We resolve the promises and add the new item to the orderItems array
       await Promise.all(skuInfoPromises).then((skuInfoArray) => {
@@ -114,13 +129,19 @@ export async function validateChangedItems(
             (newItem) => parseInt(newItem.id, 10) === skuInfo.Id
           ) as ChangesItem
 
+          const skuCommission = commissions.data.find(
+            (sku) => parseInt(sku.id as string, 10) === skuInfo.Id
+          )
+
+          const commissionValue = skuCommission?.commission as number
+
           affiliateOrder.orderItems.push({
             skuId: item.id,
             skuName: skuInfo.SkuName,
             skuImageUrl: skuInfo.ImageUrl as string,
             price: item.price,
             quantity: item.quantity,
-            commission: tempCommission,
+            commission: commissionValue,
           })
         })
       })

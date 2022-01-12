@@ -22,6 +22,9 @@ describe('validateChangedItemsMiddleware', () => {
         catalog: {
           getSkuContext: jest.fn(),
         },
+        commissionBySKU: {
+          get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
+        },
       },
       vtex: {
         logger: {
@@ -49,6 +52,9 @@ describe('validateChangedItemsMiddleware', () => {
       clients: {
         catalog: {
           getSkuContext: jest.fn(),
+        },
+        commissionBySKU: {
+          get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
         },
       },
       vtex: {
@@ -161,6 +167,9 @@ describe('validateChangedItemsMiddleware', () => {
             ImageUrl: 'url',
           }),
         },
+        commissionBySKU: {
+          get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
+        },
       },
       vtex: {
         logger: {
@@ -247,6 +256,9 @@ describe('validateChangedItemsMiddleware', () => {
             ImageUrl: 'url',
           }),
         },
+        commissionBySKU: {
+          get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
+        },
       },
       vtex: {
         logger: {
@@ -312,6 +324,9 @@ describe('validateChangedItemsMiddleware', () => {
         catalog: {
           getSkuContext: jest.fn(),
         },
+        commissionBySKU: {
+          get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
+        },
       },
       vtex: {
         logger: {
@@ -367,6 +382,9 @@ describe('validateChangedItemsMiddleware', () => {
       clients: {
         catalog: {
           getSkuContext: jest.fn(),
+        },
+        commissionBySKU: {
+          get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
         },
       },
       vtex: {
