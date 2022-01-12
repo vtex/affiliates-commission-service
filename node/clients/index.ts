@@ -5,6 +5,7 @@ import type {
   CommissionBySKU,
 } from 'vtex.affiliates-commission-service'
 
+import AuthenticationClient from './authenticationClient'
 import CheckoutExtended from './checkout'
 
 // Extend the default IOClients implementation with our own custom clients.
@@ -29,5 +30,9 @@ export class Clients extends IOClients {
 
   public get catalog() {
     return this.getOrSet('catalog', Catalog)
+  }
+
+  public get authentication() {
+    return this.getOrSet('authentication', AuthenticationClient)
   }
 }
