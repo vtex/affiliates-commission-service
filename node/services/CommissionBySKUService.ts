@@ -11,7 +11,6 @@ export class CommissionBySKUService {
   private commissionClient: CommissionClient
   private commissionData: CommissionServiceInputData
 
-  private fieldsForMDGet = commissionServiceFieldsForMDGet
   constructor(
     commissionClient: CommissionClient,
     commissionData: CommissionServiceInputData
@@ -27,7 +26,7 @@ export class CommissionBySKUService {
     await Promise.all(
       this.commissionData.map(({ id }) =>
         this.commissionClient
-          .get(id, this.fieldsForMDGet)
+          .get(id, commissionServiceFieldsForMDGet)
           .then((document) => data.push(document))
           .catch((error) => errors.push({ id, message: error.message }))
       )
