@@ -1,13 +1,18 @@
-import type { ClientsConfig, ServiceContext } from '@vtex/api'
-import { Service } from '@vtex/api'
+import type { ClientsConfig, RecorderState, ServiceContext } from '@vtex/api'
+import { method, Service } from '@vtex/api'
 
 import { Clients } from './clients'
+import { parseGetRequest } from './middlewares/commission/parseGetRequest'
+import { getCommissionBySKU } from './middlewares/commission/getCommissionBySKU'
+import { setCommissionBySKU } from './middlewares/commission/setCommissionBySKU'
+import { deleteCommissionBySKU } from './middlewares/commission/deleteCommissionBySKU'
 import { getAffiliateOrder } from './middlewares/getAffiliateOrder'
 import { parseData } from './middlewares/parseData'
 import { saveOrUpdateAffiliateOrder } from './middlewares/saveOrUpdateAffiliateOrder'
 import { updateOrderStatus } from './middlewares/updateOrderStatus'
 import { validateChangedItems } from './middlewares/validateChangedItems'
 import { validateOrder } from './middlewares/validateOrder'
+import type { CommissionServiceInputData } from './typings/commission'
 
 const TIMEOUT_MS = 2 * 1000
 
@@ -24,14 +29,25 @@ const clients: ClientsConfig<Clients> = {
   },
 }
 
+interface State extends RecorderState {
+  commissionInput: CommissionServiceInputData
+}
+
 declare global {
   // We declare a global Context type just to avoid re-writing ServiceContext<Clients, State> in every handler and resolver
-  type Context = ServiceContext<Clients>
+  type Context = ServiceContext<Clients, State>
 }
 
 // Export a service that defines route handlers and client options.
 export default new Service({
   clients,
+  routes: {
+    commissionBySKU: method({
+      GET: [parseGetRequest, getCommissionBySKU],
+      PUT: [setCommissionBySKU],
+      DELETE: [deleteCommissionBySKU],
+    }),
+  },
   events: {
     setAffiliatesOrders: [validateOrder, parseData, saveOrUpdateAffiliateOrder],
     updateOrderStatus: [validateOrder, getAffiliateOrder, updateOrderStatus],
