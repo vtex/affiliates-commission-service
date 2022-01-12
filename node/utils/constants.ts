@@ -23,6 +23,7 @@ export const LOGGER_ERROR_METRICS = {
   deleteCommissionBySKU: 'delete-commission-by-sku',
   getAffiliateOrder: 'get-affiliate-order',
   validateChangedItems: 'validate-changed-items',
+  parseData: 'parse-data',
 }
 
 export const LOGGER_ERROR_MESSAGES = {
@@ -33,4 +34,5 @@ export const LOGGER_ERROR_MESSAGES = {
   deleteCommissionBySKU: 'Error deleting commission by SKU',
   getAffiliateOrder: 'Error getting the affiliate order',
   validateChangedItems: 'Error validating the changed items',
+  parseData: 'Error parsing the order data',
 }
