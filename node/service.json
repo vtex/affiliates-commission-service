@@ -5,6 +5,12 @@
   "minReplicas": 2,
   "maxReplicas": 4,
   "workers": 1,
+  "routes": {
+    "commissionBySKU": {
+      "path": "/_v/commissionBySKU",
+      "public": true
+    }
+  },
   "events": {
     "setAffiliatesOrders": {
       "sender": "vtex.orders-broadcast",

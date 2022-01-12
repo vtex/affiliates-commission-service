@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## Added
+
+- CommissionBySKU service route
+
 ## [0.5.0] - 2022-01-10
 
 ### Added
@@ -24,6 +28,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.4.0] - 2022-01-06
 
+### Added
+
+- CommissionBySKU MD entity and client
+- CommissionBySKUService
+
 ## [0.3.0] - 2022-01-04
 
 ### Added
@@ -35,11 +44,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Change setAffiliatesOrders event topic to order-created
 
 ## [0.2.0] - 2022-01-03
-
-### Added
-
-- CommissionBySKU MD entity and client
-- CommissionBySKUService
 
 ### Added
 
