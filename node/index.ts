@@ -1,8 +1,12 @@
-import type { ClientsConfig, ServiceContext } from '@vtex/api'
+import type { ClientsConfig, ServiceContext, RecorderState } from '@vtex/api'
 import { method, Service } from '@vtex/api'
 
 import { Clients } from './clients'
 import { authenticateRequest } from './middlewares/authenticateRequest'
+import { parseGetRequest } from './middlewares/commission/parseGetRequest'
+import { getCommissionBySKU } from './middlewares/commission/getCommissionBySKU'
+import { setCommissionBySKU } from './middlewares/commission/setCommissionBySKU'
+import { deleteCommissionBySKU } from './middlewares/commission/deleteCommissionBySKU'
 import { getAffiliateOrder } from './middlewares/getAffiliateOrder'
 import { getAffiliateOrders } from './middlewares/getAffiliateOrders'
 import { parseData } from './middlewares/parseData'
@@ -10,6 +14,7 @@ import { saveOrUpdateAffiliateOrder } from './middlewares/saveOrUpdateAffiliateO
 import { updateOrderStatus } from './middlewares/updateOrderStatus'
 import { validateChangedItems } from './middlewares/validateChangedItems'
 import { validateOrder } from './middlewares/validateOrder'
+import type { CommissionServiceInputData } from './typings/commission'
 
 const TIMEOUT_MS = 2 * 1000
 
@@ -26,9 +31,13 @@ const clients: ClientsConfig<Clients> = {
   },
 }
 
+interface State extends RecorderState {
+  commissionInput: CommissionServiceInputData
+}
+
 declare global {
   // We declare a global Context type just to avoid re-writing ServiceContext<Clients, State> in every handler and resolver
-  type Context = ServiceContext<Clients>
+  type Context = ServiceContext<Clients, State>
 }
 
 // Export a service that defines route handlers and client options.
@@ -37,6 +46,11 @@ export default new Service({
   routes: {
     affiliateOrders: method({
       GET: [authenticateRequest, getAffiliateOrders],
+    }),
+    commissionBySKU: method({
+      GET: [parseGetRequest, getCommissionBySKU],
+      PUT: [setCommissionBySKU],
+      DELETE: [deleteCommissionBySKU],
     }),
   },
   events: {

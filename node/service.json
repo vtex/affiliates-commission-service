@@ -9,6 +9,10 @@
     "affiliateOrders": {
       "path": "/_v/affiliateOrders/:affiliateId",
       "public": true
+    },
+    "commissionBySKU": {
+      "path": "/_v/commissionBySKU",
+      "public": true
     }
   },
   "events": {
