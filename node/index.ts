@@ -1,12 +1,14 @@
-import type { ClientsConfig, RecorderState, ServiceContext } from '@vtex/api'
+import type { ClientsConfig, ServiceContext, RecorderState } from '@vtex/api'
 import { method, Service } from '@vtex/api'
 
 import { Clients } from './clients'
+import { authenticateRequest } from './middlewares/authenticateRequest'
 import { parseGetRequest } from './middlewares/commission/parseGetRequest'
 import { getCommissionBySKU } from './middlewares/commission/getCommissionBySKU'
 import { setCommissionBySKU } from './middlewares/commission/setCommissionBySKU'
 import { deleteCommissionBySKU } from './middlewares/commission/deleteCommissionBySKU'
 import { getAffiliateOrder } from './middlewares/getAffiliateOrder'
+import { getAffiliateOrders } from './middlewares/getAffiliateOrders'
 import { parseData } from './middlewares/parseData'
 import { saveOrUpdateAffiliateOrder } from './middlewares/saveOrUpdateAffiliateOrder'
 import { updateOrderStatus } from './middlewares/updateOrderStatus'
@@ -42,6 +44,9 @@ declare global {
 export default new Service({
   clients,
   routes: {
+    affiliateOrders: method({
+      GET: [authenticateRequest, getAffiliateOrders],
+    }),
     commissionBySKU: method({
       GET: [parseGetRequest, getCommissionBySKU],
       PUT: [setCommissionBySKU],

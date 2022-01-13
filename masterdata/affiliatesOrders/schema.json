@@ -50,6 +50,6 @@
     }
   },
   "required": ["affiliateId", "userEmail", "orderItems"],
-  "v-indexed": ["affiliateId", "userEmail", "status"],
+  "v-indexed": ["affiliateId", "userEmail", "status", "orderDate"],
   "v-cache": false
 }
