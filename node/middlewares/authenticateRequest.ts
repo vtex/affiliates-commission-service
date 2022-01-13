@@ -10,8 +10,8 @@ export async function authenticateRequest(
   next: () => Promise<unknown>
 ) {
   const { authentication, licenseManager } = ctx.clients
-  const appKey = ctx.headers[APP_KEY_HEADER] as string
-  const appToken = ctx.headers[APP_TOKEN_HEADER] as string
+  const appKey = ctx.headers[APP_KEY_HEADER] as string | undefined
+  const appToken = ctx.headers[APP_TOKEN_HEADER] as string | undefined
 
   if (!appKey || !appToken) {
     ctx.status = HTTP_ERRORS.missingAuthentication.status
