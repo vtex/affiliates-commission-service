@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.9.1] - 2022-01-13
+
 ### Changed
 
 - Bumps follow-redirects from 1.14.6 to 1.14.7
