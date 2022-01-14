@@ -62,3 +62,4 @@ export const HTTP_ERRORS = {
 }
 
 export const MD_READ_PERMISSION = 'READONLY_USER_DS'
+export const MAIN_APP_ID = 'vtex.affiliates'
