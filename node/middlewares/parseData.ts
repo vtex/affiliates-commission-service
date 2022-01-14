@@ -9,20 +9,19 @@ import {
   LOGGER_ERROR_MESSAGES,
   LOGGER_ERROR_METRICS,
 } from '../utils/constants'
+import { getDefaultCommission } from '../utils/functions'
 
 // This middleware will parse the data to the object the MD expects
 export async function parseData(
-  {
-    state,
-    clients: { commissionBySKU },
-    vtex: { logger },
-  }: EventContext<Clients>,
+  { state, clients, vtex: { logger } }: EventContext<Clients>,
   next: () => Promise<unknown>
 ) {
   const {
     order,
     customData,
   }: { order: OrderItemDetailResponseExtended; customData: CustomApps } = state
+
+  const { commissionBySKU } = clients
 
   const affiliateId = customData.fields[CUSTOM_DATA_FIELD_ID]
 
@@ -38,11 +37,14 @@ export async function parseData(
     )
 
     const commissions = await commissionService.get()
+    const defaultCommission = await getDefaultCommission(clients)
 
     const orderItems = order.items.map((item) => {
       const { id, skuName, imageUrl, sellingPrice, quantity } = item
       const skuCommission = commissions.data.find((sku) => sku.id === id)
-      const commissionValue = skuCommission?.commission as number
+      const commissionValue = skuCommission
+        ? (skuCommission.commission as number)
+        : defaultCommission
 
       orderTotalCommission += (quantity * sellingPrice * commissionValue) / 100
 
