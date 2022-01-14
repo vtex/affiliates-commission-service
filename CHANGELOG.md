@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Function to get default commission from affiliates app settings
+
 ## [0.10.0] - 2022-01-13
 
 ### Added
