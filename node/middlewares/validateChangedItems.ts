@@ -13,15 +13,12 @@ import {
   LOGGER_ERROR_MESSAGES,
   LOGGER_ERROR_METRICS,
 } from '../utils/constants'
+import { getDefaultCommission } from '../utils/functions'
 
 // This middleware will parse the data to the object the MD expects
 // It will see the changes made to the order after it is already created
 export async function validateChangedItems(
-  {
-    state,
-    clients: { catalog, commissionBySKU },
-    vtex: { logger },
-  }: EventContext<Clients>,
+  { state, clients, vtex: { logger } }: EventContext<Clients>,
   next: () => Promise<unknown>
 ) {
   const {
@@ -31,6 +28,8 @@ export async function validateChangedItems(
     order: OrderItemDetailResponseExtended
     affiliateOrder: AffiliatesOrders
   } = state
+
+  const { catalog, commissionBySKU } = clients
 
   // If the affiliateOrder is already saved as invoiced we just return
   // We do this to avoid duplicated events
@@ -121,6 +120,7 @@ export async function validateChangedItems(
       )
 
       const commissions = await commissionService.get()
+      const defaultCommission = await getDefaultCommission(clients)
 
       // We resolve the promises and add the new item to the orderItems array
       await Promise.all(skuInfoPromises).then((skuInfoArray) => {
@@ -133,7 +133,9 @@ export async function validateChangedItems(
             (sku) => parseInt(sku.id as string, 10) === skuInfo.Id
           )
 
-          const commissionValue = skuCommission?.commission as number
+          const commissionValue = skuCommission
+            ? (skuCommission.commission as number)
+            : defaultCommission
 
           affiliateOrder.orderItems.push({
             skuId: item.id,

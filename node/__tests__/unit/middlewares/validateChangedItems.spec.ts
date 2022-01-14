@@ -25,6 +25,12 @@ describe('validateChangedItemsMiddleware', () => {
         commissionBySKU: {
           get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
         },
+        apps: {
+          getApp: jest.fn().mockResolvedValueOnce({ id: 'appId' }),
+          getAppSettings: jest
+            .fn()
+            .mockResolvedValue({ defaultSkuCommissionValue: 0 }),
+        },
       },
       vtex: {
         logger: {
@@ -55,6 +61,12 @@ describe('validateChangedItemsMiddleware', () => {
         },
         commissionBySKU: {
           get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
+        },
+        apps: {
+          getApp: jest.fn().mockResolvedValueOnce({ id: 'appId' }),
+          getAppSettings: jest
+            .fn()
+            .mockResolvedValue({ defaultSkuCommissionValue: 0 }),
         },
       },
       vtex: {
@@ -170,6 +182,12 @@ describe('validateChangedItemsMiddleware', () => {
         commissionBySKU: {
           get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
         },
+        apps: {
+          getApp: jest.fn().mockResolvedValueOnce({ id: 'appId' }),
+          getAppSettings: jest
+            .fn()
+            .mockResolvedValue({ defaultSkuCommissionValue: 0 }),
+        },
       },
       vtex: {
         logger: {
@@ -259,6 +277,12 @@ describe('validateChangedItemsMiddleware', () => {
         commissionBySKU: {
           get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
         },
+        apps: {
+          getApp: jest.fn().mockResolvedValueOnce({ id: 'appId' }),
+          getAppSettings: jest
+            .fn()
+            .mockResolvedValue({ defaultSkuCommissionValue: 0 }),
+        },
       },
       vtex: {
         logger: {
@@ -327,6 +351,12 @@ describe('validateChangedItemsMiddleware', () => {
         commissionBySKU: {
           get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
         },
+        apps: {
+          getApp: jest.fn().mockResolvedValueOnce({ id: 'appId' }),
+          getAppSettings: jest
+            .fn()
+            .mockResolvedValue({ defaultSkuCommissionValue: 0 }),
+        },
       },
       vtex: {
         logger: {
@@ -385,6 +415,12 @@ describe('validateChangedItemsMiddleware', () => {
         },
         commissionBySKU: {
           get: jest.fn().mockResolvedValueOnce([{ id: '1', commission: 10 }]),
+        },
+        apps: {
+          getApp: jest.fn().mockResolvedValueOnce({ id: 'appId' }),
+          getAppSettings: jest
+            .fn()
+            .mockResolvedValue({ defaultSkuCommissionValue: 0 }),
         },
       },
       vtex: {
