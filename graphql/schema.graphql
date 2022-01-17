@@ -1,0 +1,8 @@
+type Query {
+  affiliateOrders(
+    page: Int!
+    pageSize: Int!
+    filter: AffiliateOrdersFilterInput
+    sorting: AffiliateOrdersSortingInput
+  ): [AffiliateOrdersPage]
+}
