@@ -5,8 +5,8 @@ input AffiliateOrdersFilterInput {
 }
 
 input DateRange {
-  startDate: String
-  endDate: String
+  startDate: String!
+  endDate: String!
 }
 
 input AffiliateOrdersSortingInput {
@@ -14,10 +14,10 @@ input AffiliateOrdersSortingInput {
   order: SortingOrder!
 }
 
-input AffiliateOrdersSortingField {
-  orderDate: String
-  orderTotal: Float
-  orderTotalCommission: Float
+enum AffiliateOrdersSortingField {
+  orderDate
+  orderTotal
+  orderTotalCommission
 }
 
 enum SortingOrder {

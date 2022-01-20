@@ -4,5 +4,5 @@ type Query {
     pageSize: Int!
     filter: AffiliateOrdersFilterInput
     sorting: AffiliateOrdersSortingInput
-  ): [AffiliateOrdersPage]
+  ): AffiliateOrdersPage
 }

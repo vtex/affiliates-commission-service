@@ -19,13 +19,12 @@ type OrderItem {
 }
 
 type AffiliateOrdersPage {
-  orders: [AffiliateOrder!]!
-  paging: Paging!
+  data: [AffiliateOrder]!
+  pagination: Pagination!
 }
 
-type Paging {
+type Pagination {
   page: Int!
-  perPage: Int!
+  pageSize: Int!
   total: Int!
-  pages: Int!
 }
