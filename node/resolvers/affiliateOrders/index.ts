@@ -1,4 +1,7 @@
-import type { QueryAffiliateOrdersArgs } from 'vtex.affiliates-commission-service'
+import type {
+  AffiliateOrder,
+  QueryAffiliateOrdersArgs,
+} from 'vtex.affiliates-commission-service'
 
 import { parseAffiliateOrdersFilters } from '../../utils/affiliateOrders'
 
@@ -13,18 +16,19 @@ export const queries = {
     const sort = sorting ? `${sorting.field} ${sorting.order}` : undefined
     const where = filter ? parseAffiliateOrdersFilters(filter) : undefined
 
-    let bla
+    return affiliatesOrders.searchRaw(pagination, fields, sort, where)
+  },
+}
 
-    try {
-      bla = await affiliatesOrders.searchRaw(pagination, fields, sort, where)
-
-      console.info(bla)
-
-      return bla
-    } catch (e) {
-      console.info(e)
-    }
-
-    return bla
+export const fieldResolvers = {
+  AffiliateOrder: {
+    orderTotal: (parent: AffiliateOrder) =>
+      typeof parent.orderTotal === 'number'
+        ? parent.orderTotal / 100
+        : undefined,
+    orderTotalCommission: (parent: AffiliateOrder) =>
+      typeof parent.orderTotalCommission === 'number'
+        ? parent.orderTotalCommission / 100
+        : undefined,
   },
 }
