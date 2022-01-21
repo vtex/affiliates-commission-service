@@ -1,5 +1,5 @@
 import type {
-  AffiliateOrder,
+  AffiliatesOrders,
   QueryAffiliateOrdersArgs,
 } from 'vtex.affiliates-commission-service'
 
@@ -22,11 +22,12 @@ export const queries = {
 
 export const fieldResolvers = {
   AffiliateOrder: {
-    orderTotal: (parent: AffiliateOrder) =>
+    orderId: (parent: AffiliatesOrders) => parent.id,
+    orderTotal: (parent: AffiliatesOrders) =>
       typeof parent.orderTotal === 'number'
         ? parent.orderTotal / 100
         : undefined,
-    orderTotalCommission: (parent: AffiliateOrder) =>
+    orderTotalCommission: (parent: AffiliatesOrders) =>
       typeof parent.orderTotalCommission === 'number'
         ? parent.orderTotalCommission / 100
         : undefined,
