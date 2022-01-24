@@ -1,0 +1,31 @@
+type AffiliateOrder {
+  id: ID!
+  orderId: ID!
+  affiliateId: String!
+  status: String
+  userEmail: String!
+  orderTotal: Float
+  orderTotalCommission: Float
+  orderDate: String
+  orderItems: [OrderItem!]!
+}
+
+type OrderItem {
+  skuId: String!
+  skuName: String!
+  skuImageUrl: String
+  price: Float!
+  quantity: Int!
+  commission: Float!
+}
+
+type AffiliateOrdersPage {
+  data: [AffiliateOrder]!
+  pagination: Pagination!
+}
+
+type Pagination {
+  page: Int!
+  pageSize: Int!
+  total: Int!
+}

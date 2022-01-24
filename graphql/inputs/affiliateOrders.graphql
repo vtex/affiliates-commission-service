@@ -1,0 +1,26 @@
+input AffiliateOrdersFilterInput {
+  affiliateId: String
+  dateRange: DateRange
+  status: String
+}
+
+input DateRange {
+  startDate: String!
+  endDate: String!
+}
+
+input AffiliateOrdersSortingInput {
+  field: AffiliateOrdersSortingField!
+  order: SortingOrder!
+}
+
+enum AffiliateOrdersSortingField {
+  orderDate
+  orderTotal
+  orderTotalCommission
+}
+
+enum SortingOrder {
+  ASC
+  DESC
+}

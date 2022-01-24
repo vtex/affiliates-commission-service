@@ -15,6 +15,7 @@ import { updateOrderStatus } from './middlewares/updateOrderStatus'
 import { validateChangedItems } from './middlewares/validateChangedItems'
 import { validateOrder } from './middlewares/validateOrder'
 import type { CommissionServiceInputData } from './typings/commission'
+import { resolvers } from './resolvers'
 
 const TIMEOUT_MS = 2 * 1000
 
@@ -43,6 +44,9 @@ declare global {
 // Export a service that defines route handlers and client options.
 export default new Service({
   clients,
+  graphql: {
+    resolvers,
+  },
   routes: {
     affiliateOrders: method({
       GET: [authenticateRequest, getAffiliateOrders],
