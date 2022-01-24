@@ -1,4 +1,7 @@
-import type { QueryCommissionsBySkuArgs } from 'vtex.affiliates-commission-service'
+import type {
+  CommissionBySKU,
+  QueryCommissionsBySkuArgs,
+} from 'vtex.affiliates-commission-service'
 
 import { parseCommissionsBySKUFilters } from '../../utils/filters'
 
@@ -14,5 +17,11 @@ export const queries = {
     const where = filter ? parseCommissionsBySKUFilters(filter) : undefined
 
     return commissionBySKU.searchRaw(pagination, fields, sort, where)
+  },
+}
+
+export const fieldResolvers = {
+  CommissionBySKU: {
+    skuId: (parent: CommissionBySKU) => parent.id,
   },
 }
