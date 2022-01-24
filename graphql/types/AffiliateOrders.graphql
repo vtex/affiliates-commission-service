@@ -1,4 +1,5 @@
 type AffiliateOrder {
+  id: ID!
   orderId: ID!
   affiliateId: String!
   status: String
