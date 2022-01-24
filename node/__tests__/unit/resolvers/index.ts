@@ -1,7 +1,7 @@
 import type { QueryAffiliateOrdersArgs } from 'vtex.affiliates-commission-service'
 
 import { resolvers } from '../../../resolvers'
-import { parseAffiliateOrdersFilters } from '../../../utils/affiliateOrders'
+import { parseAffiliateOrdersFilters } from '../../../utils/filters'
 
 const {
   Query: { affiliateOrders },

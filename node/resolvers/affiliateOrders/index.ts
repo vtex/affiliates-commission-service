@@ -3,7 +3,7 @@ import type {
   QueryAffiliateOrdersArgs,
 } from 'vtex.affiliates-commission-service'
 
-import { parseAffiliateOrdersFilters } from '../../utils/affiliateOrders'
+import { parseAffiliateOrdersFilters } from '../../utils/filters'
 
 export const queries = {
   affiliateOrders: async (
