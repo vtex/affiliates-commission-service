@@ -23,9 +23,3 @@ type AffiliateOrdersPage {
   data: [AffiliateOrder]!
   pagination: Pagination!
 }
-
-type Pagination {
-  page: Int!
-  pageSize: Int!
-  total: Int!
-}

@@ -19,8 +19,3 @@ enum AffiliateOrdersSortingField {
   orderTotal
   orderTotalCommission
 }
-
-enum SortingOrder {
-  ASC
-  DESC
-}
