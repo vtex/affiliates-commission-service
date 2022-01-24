@@ -6208,9 +6208,9 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-"vtex.affiliates-commission-service@https://gabiru--partnerintegrationbra.myvtex.com/_v/private/typings/linked/v1/vtex.affiliates-commission-service@0.11.0+build1643025104/public/@types/vtex.affiliates-commission-service":
+"vtex.affiliates-commission-service@https://gabiru--partnerintegrationbra.myvtex.com/_v/private/typings/linked/v1/vtex.affiliates-commission-service@0.11.0+build1643048194/public/@types/vtex.affiliates-commission-service":
   version "0.11.0"
-  resolved "https://gabiru--partnerintegrationbra.myvtex.com/_v/private/typings/linked/v1/vtex.affiliates-commission-service@0.11.0+build1643025104/public/@types/vtex.affiliates-commission-service#5722684e0739979bcd899cc70eca434c84f7405f"
+  resolved "https://gabiru--partnerintegrationbra.myvtex.com/_v/private/typings/linked/v1/vtex.affiliates-commission-service@0.11.0+build1643048194/public/@types/vtex.affiliates-commission-service#9de8bcfc58039e1845dd2564b646d8315a9ab427"
 
 w3c-hr-time@^1.0.1:
   version "1.0.2"

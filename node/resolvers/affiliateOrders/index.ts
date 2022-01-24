@@ -1,9 +1,10 @@
 import type {
   AffiliatesOrders,
+  QueryAffiliateOrderArgs,
   QueryAffiliateOrdersArgs,
 } from 'vtex.affiliates-commission-service'
 
-import { parseAffiliateOrdersFilters } from '../../utils/affiliateOrders'
+import { parseAffiliateOrdersFilters } from '../../utils/filters'
 
 export const queries = {
   affiliateOrders: async (
@@ -18,6 +19,12 @@ export const queries = {
 
     return affiliatesOrders.searchRaw(pagination, fields, sort, where)
   },
+
+  affiliateOrder: (
+    _: unknown,
+    { orderId }: QueryAffiliateOrderArgs,
+    { clients: { affiliatesOrders } }: Context
+  ) => affiliatesOrders.get(orderId, ['_all']),
 }
 
 export const fieldResolvers = {

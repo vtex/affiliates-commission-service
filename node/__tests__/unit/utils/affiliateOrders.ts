@@ -1,4 +1,4 @@
-import { parseAffiliateOrdersFilters } from '../../../utils/affiliateOrders'
+import { parseAffiliateOrdersFilters } from '../../../utils/filters'
 
 describe('parseAffiliateOrdersFilters', () => {
   const mockedFilter = {
