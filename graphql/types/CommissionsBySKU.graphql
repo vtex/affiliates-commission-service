@@ -1,0 +1,10 @@
+type CommissionsBySKU {
+  id: ID!
+  commission: Int!
+  refId: String
+}
+
+type CommissionsBySKUPage {
+  data: [CommissionsBySKU]!
+  pagination: Pagination!
+}

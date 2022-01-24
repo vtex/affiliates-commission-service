@@ -5,4 +5,11 @@ type Query {
     filter: AffiliateOrdersFilterInput
     sorting: AffiliateOrdersSortingInput
   ): AffiliateOrdersPage
+
+  commissionsBySKU(
+    page: Int!
+    pageSize: Int!
+    filter: CommissionsBySKUFilterInput
+    sorting: CommissionsBySKUSortingInput
+  ): CommissionsBySKUPage
 }
