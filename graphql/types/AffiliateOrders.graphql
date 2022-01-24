@@ -8,6 +8,7 @@ type AffiliateOrder {
   orderTotalCommission: Float
   orderDate: String
   orderItems: [OrderItem!]!
+  lastInteractionIn: String
 }
 
 type OrderItem {

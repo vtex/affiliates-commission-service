@@ -6,6 +6,8 @@ type Query {
     sorting: AffiliateOrdersSortingInput
   ): AffiliateOrdersPage
 
+  affiliateOrder(orderId: ID!): AffiliateOrder
+
   commissionsBySKU(
     page: Int!
     pageSize: Int!
