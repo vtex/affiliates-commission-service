@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- GraphQL Schema, typings and resolvers for Affiliate Orders
+- GraphQL Schema, typings and resolvers for Affiliate Orders and Commissions By SKU
 
 ## [0.11.0] - 2022-01-20
 
