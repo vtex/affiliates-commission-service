@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - GraphQL Schema, typings and resolvers for Affiliate Orders
 
+## [0.11.0] - 2022-01-20
+
+### Added
+
+- Function to get default commission from affiliates app settings
+
 ## [0.10.0] - 2022-01-13
 
 ### Added
