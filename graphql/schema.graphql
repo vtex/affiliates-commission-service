@@ -8,6 +8,12 @@ type Query {
 
   affiliateOrder(orderId: ID!): AffiliateOrder
 
+  exportAffiliateOrders(
+    filter: AffiliateOrdersFilterInput
+    sorting: AffiliateOrdersSortingInput
+    userEmail: String!
+  ): Boolean
+
   commissionsBySKU(
     page: Int!
     pageSize: Int!
