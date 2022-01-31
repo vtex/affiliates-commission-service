@@ -15,3 +15,7 @@ type Query {
     sorting: CommissionsBySKUSortingInput
   ): CommissionsBySKUPage
 }
+
+type Mutation {
+  updateCommission(newCommission: UpdateCommissionInput!): CommissionBySKU
+}

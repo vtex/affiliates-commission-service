@@ -8,6 +8,11 @@ input CommissionsBySKUSortingInput {
   order: SortingOrder!
 }
 
+input UpdateCommissionInput {
+  id: ID!
+  commission: Int!
+}
+
 enum CommissionsBySKUSortingField {
   commission
 }
