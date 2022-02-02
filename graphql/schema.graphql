@@ -25,3 +25,7 @@ type Query {
     sorting: CommissionsBySKUSortingInput
   ): Boolean
 }
+
+type Mutation {
+  updateCommission(newCommission: UpdateCommissionInput!): CommissionBySKU
+}

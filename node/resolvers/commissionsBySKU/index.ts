@@ -2,6 +2,7 @@ import type {
   CommissionBySKU,
   QueryCommissionsBySkuArgs,
   QueryExportCommissionsBySkuArgs,
+  MutationUpdateCommissionArgs,
 } from 'vtex.affiliates-commission-service'
 
 import { ExportMDSheetService } from '../../services/ExportMDSheetService'
@@ -38,6 +39,20 @@ export const queries = {
     await sendFileViaEmail(fileName)
 
     return true
+  },
+}
+
+export const mutations = {
+  updateCommission: async (
+    _: unknown,
+    { newCommission: { id, commission } }: MutationUpdateCommissionArgs,
+    { clients: { commissionBySKU } }: Context
+  ) => {
+    const fields = ['_all']
+
+    await commissionBySKU.update(id, { commission })
+
+    return commissionBySKU.get(id, fields)
   },
 }
 

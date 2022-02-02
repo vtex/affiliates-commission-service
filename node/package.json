@@ -16,11 +16,11 @@
     "@vtex/test-tools": "^3.4.1",
     "@vtex/tsconfig": "^0.5.6",
     "typescript": "3.9.7",
-    "vtex.affiliates-commission-service": "https://gabiru--partnerintegrationbra.myvtex.com/_v/private/typings/linked/v1/vtex.affiliates-commission-service@0.12.0+build1643809117/public/@types/vtex.affiliates-commission-service"
+    "vtex.affiliates-commission-service": "https://gabiru--partnerintegrationbra.myvtex.com/_v/private/typings/linked/v1/vtex.affiliates-commission-service@0.13.0+build1643826607/public/@types/vtex.affiliates-commission-service"
   },
   "scripts": {
     "lint": "tsc --noEmit --pretty",
     "test": "vtex-test-tools test --collectCoverage"
   },
-  "version": "0.12.0"
+  "version": "0.13.0"
 }
