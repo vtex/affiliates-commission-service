@@ -8,24 +8,24 @@ type Query {
 
   affiliateOrder(orderId: ID!): AffiliateOrder
 
-  exportAffiliateOrders(
-    filter: AffiliateOrdersFilterInput
-    sorting: AffiliateOrdersSortingInput
-  ): Boolean
-
   commissionsBySKU(
     page: Int!
     pageSize: Int!
     filter: CommissionsBySKUFilterInput
     sorting: CommissionsBySKUSortingInput
   ): CommissionsBySKUPage
+}
+
+type Mutation {
+  updateCommission(newCommission: UpdateCommissionInput!): CommissionBySKU
+
+  exportAffiliateOrders(
+    filter: AffiliateOrdersFilterInput
+    sorting: AffiliateOrdersSortingInput
+  ): Boolean
 
   exportCommissionsBySKU(
     filter: CommissionsBySKUFilterInput
     sorting: CommissionsBySKUSortingInput
   ): Boolean
-}
-
-type Mutation {
-  updateCommission(newCommission: UpdateCommissionInput!): CommissionBySKU
 }

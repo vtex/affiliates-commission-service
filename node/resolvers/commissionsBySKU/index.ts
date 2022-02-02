@@ -1,7 +1,7 @@
 import type {
   CommissionBySKU,
   QueryCommissionsBySkuArgs,
-  QueryExportCommissionsBySkuArgs,
+  MutationExportCommissionsBySkuArgs,
   MutationUpdateCommissionArgs,
 } from 'vtex.affiliates-commission-service'
 
@@ -21,9 +21,23 @@ export const queries = {
 
     return commissionBySKU.searchRaw(pagination, fields, sort, where)
   },
+}
+
+export const mutations = {
+  updateCommission: async (
+    _: unknown,
+    { newCommission: { id, commission } }: MutationUpdateCommissionArgs,
+    { clients: { commissionBySKU } }: Context
+  ) => {
+    const fields = ['_all']
+
+    await commissionBySKU.update(id, { commission })
+
+    return commissionBySKU.get(id, fields)
+  },
   exportCommissionsBySKU: async (
     _: unknown,
-    { filter, sorting }: QueryExportCommissionsBySkuArgs,
+    { filter, sorting }: MutationExportCommissionsBySkuArgs,
     ctx: Context
   ) => {
     const { getAllMDDocuments, saveToVBase, sendFileViaEmail } =
@@ -39,20 +53,6 @@ export const queries = {
     await sendFileViaEmail(fileName)
 
     return true
-  },
-}
-
-export const mutations = {
-  updateCommission: async (
-    _: unknown,
-    { newCommission: { id, commission } }: MutationUpdateCommissionArgs,
-    { clients: { commissionBySKU } }: Context
-  ) => {
-    const fields = ['_all']
-
-    await commissionBySKU.update(id, { commission })
-
-    return commissionBySKU.get(id, fields)
   },
 }
 
