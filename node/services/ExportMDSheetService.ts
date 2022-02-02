@@ -6,7 +6,10 @@ import type {
   CommissionBySKU,
 } from 'vtex.affiliates-commission-service'
 
-import type { MDEntityForExporting } from '../utils/exporting'
+import type {
+  AffiliateOrderExportingRow,
+  MDEntityForExporting,
+} from '../utils/exporting'
 import {
   baseURLForExporting,
   bucketNameForExporting,
@@ -17,6 +20,7 @@ import {
 import { emailTemplateName } from '../utils/email'
 
 export class ExportMDSheetService {
+  private entity: MDEntityForExporting
   private ctx: Context
   private MDClient: MasterDataEntity<AffiliatesOrders | CommissionBySKU>
   private bucketName: string
@@ -25,6 +29,7 @@ export class ExportMDSheetService {
   private baseURL: string
 
   constructor(entity: MDEntityForExporting, ctx: Context) {
+    this.entity = entity
     this.ctx = ctx
     this.MDClient =
       entity === 'affiliatesOrders'
@@ -40,8 +45,29 @@ export class ExportMDSheetService {
     )
   }
 
+  private formatAffiliateOrders = (page: AffiliatesOrders[]) => {
+    const newPage: AffiliateOrderExportingRow[] = []
+
+    page.forEach(({ id, affiliateId, orderTotalCommission, orderItems }) => {
+      orderItems.forEach(({ skuId, skuName, price, quantity, commission }) => {
+        newPage.push({
+          id: `${id}`,
+          affiliateId,
+          orderTotalCommission: orderTotalCommission ?? 0,
+          skuId,
+          skuName,
+          price,
+          quantity,
+          commission,
+        })
+      })
+    })
+
+    return newPage
+  }
+
   public getAllMDDocuments = async (sort?: string, where?: string) => {
-    const { MDClient, fields } = this
+    const { MDClient, fields, formatAffiliateOrders } = this
     const pageSize = PAGE_SIZE_FOR_EXPORTING
     const {
       pagination: { total },
@@ -52,7 +78,14 @@ export class ExportMDSheetService {
     const promises = []
 
     for (let page = 1; page <= totalPages; page++) {
-      promises.push(MDClient.search({ page, pageSize }, fields, sort, where))
+      promises.push(
+        MDClient.search({ page, pageSize }, fields, sort, where).then(
+          (documentPage) =>
+            this.entity === 'affiliatesOrders'
+              ? formatAffiliateOrders(documentPage as AffiliatesOrders[])
+              : documentPage
+        )
+      )
     }
 
     const promiseResults = await Promise.all(promises)
