@@ -7,6 +7,7 @@ import type {
 
 import AuthenticationClient from './authenticationClient'
 import CheckoutExtended from './checkout'
+import MessageCenterClient from './messageCenter'
 
 // Extend the default IOClients implementation with our own custom clients.
 export class Clients extends IOClients {
@@ -34,5 +35,9 @@ export class Clients extends IOClients {
 
   public get authentication() {
     return this.getOrSet('authentication', AuthenticationClient)
+  }
+
+  public get messageCenter() {
+    return this.getOrSet('messageCenter', MessageCenterClient)
   }
 }
