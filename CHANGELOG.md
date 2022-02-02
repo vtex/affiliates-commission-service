@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- GraphQL mutation and resolver for exporting affiliate orders sheet
+- GraphQL mutation and resolver for exporting commisions by SKU sheet
+- Exporting service for both masterdata entities
+
 ## [0.13.0] - 2022-02-02
 
 ### Added
