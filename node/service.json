@@ -13,9 +13,21 @@
     "commissionBySKU": {
       "path": "/_v/commissionBySKU",
       "public": true
+    },
+    "exportAffiliateOrders": {
+      "path": "/_v/export/affiliateOrders/:fileName",
+      "public": true
+    },
+    "exportCommissionBySKU": {
+      "path": "/_v/export/commissionBySKU/:fileName",
+      "public": true
     }
   },
   "events": {
+    "onAppInstalled": {
+      "sender": "apps",
+      "keys": ["setup"]
+    },
     "setAffiliatesOrders": {
       "sender": "vtex.orders-broadcast",
       "topics": ["order-created"]

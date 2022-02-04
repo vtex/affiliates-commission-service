@@ -2,8 +2,10 @@ import type {
   AffiliatesOrders,
   QueryAffiliateOrderArgs,
   QueryAffiliateOrdersArgs,
+  MutationExportAffiliateOrdersArgs,
 } from 'vtex.affiliates-commission-service'
 
+import { ExportMDSheetService } from '../../services/ExportMDSheetService'
 import { parseAffiliateOrdersFilters } from '../../utils/filters'
 
 export const queries = {
@@ -25,6 +27,26 @@ export const queries = {
     { orderId }: QueryAffiliateOrderArgs,
     { clients: { affiliatesOrders } }: Context
   ) => affiliatesOrders.get(orderId, ['_all']),
+}
+
+export const mutations = {
+  exportAffiliateOrders: async (
+    _: unknown,
+    { filter, sorting }: MutationExportAffiliateOrdersArgs,
+    ctx: Context
+  ) => {
+    const { getAllMDDocuments, saveToVBase, sendFileViaEmail } =
+      new ExportMDSheetService('affiliatesOrders', ctx)
+
+    const sort = sorting ? `${sorting.field} ${sorting.order}` : undefined
+    const where = filter ? parseAffiliateOrdersFilters(filter) : undefined
+
+    getAllMDDocuments(sort, where)
+      .then((documents) => saveToVBase(documents))
+      .then((fileName) => sendFileViaEmail(fileName))
+
+    return true
+  },
 }
 
 export const fieldResolvers = {

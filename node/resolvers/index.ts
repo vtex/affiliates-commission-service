@@ -1,6 +1,7 @@
 import {
   fieldResolvers as affiliateOrdersFieldResolvers,
   queries as affiliateOrdersQueries,
+  mutations as affiliateOrdersMutations,
 } from './affiliateOrders'
 import {
   fieldResolvers as commissionsBySKUFieldResolvers,
@@ -16,6 +17,7 @@ export const resolvers = {
     ...CommissionsBySKUQueries,
   },
   Mutation: {
+    ...affiliateOrdersMutations,
     ...CommissionsBySKUMutations,
   },
 }

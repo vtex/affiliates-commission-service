@@ -1,9 +1,11 @@
 import type {
   CommissionBySKU,
   QueryCommissionsBySkuArgs,
+  MutationExportCommissionsBySkuArgs,
   MutationUpdateCommissionArgs,
 } from 'vtex.affiliates-commission-service'
 
+import { ExportMDSheetService } from '../../services/ExportMDSheetService'
 import { parseCommissionsBySKUFilters } from '../../utils/filters'
 
 export const queries = {
@@ -32,6 +34,23 @@ export const mutations = {
     await commissionBySKU.update(id, { commission })
 
     return commissionBySKU.get(id, fields)
+  },
+  exportCommissionsBySKU: async (
+    _: unknown,
+    { filter, sorting }: MutationExportCommissionsBySkuArgs,
+    ctx: Context
+  ) => {
+    const { getAllMDDocuments, saveToVBase, sendFileViaEmail } =
+      new ExportMDSheetService('commissionBySKU', ctx)
+
+    const sort = sorting ? `${sorting.field} ${sorting.order}` : undefined
+    const where = filter ? parseCommissionsBySKUFilters(filter) : undefined
+
+    getAllMDDocuments(sort, where)
+      .then((documents) => saveToVBase(documents))
+      .then((fileName) => sendFileViaEmail(fileName))
+
+    return true
   },
 }
 

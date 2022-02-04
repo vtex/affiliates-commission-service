@@ -16,6 +16,9 @@ import { validateChangedItems } from './middlewares/validateChangedItems'
 import { validateOrder } from './middlewares/validateOrder'
 import type { CommissionServiceInputData } from './typings/commission'
 import { resolvers } from './resolvers'
+import { getExportedAffiliateOrders } from './middlewares/exporting/getExportedAffiliateOrders'
+import { createEmailTemplates } from './middlewares/exporting/createEmailTemplates'
+import { getExportedComissionsBySKU } from './middlewares/exporting/getExportedComissionsBySKU'
 
 const TIMEOUT_MS = 2 * 1000
 
@@ -56,8 +59,15 @@ export default new Service({
       PUT: [setCommissionBySKU],
       DELETE: [deleteCommissionBySKU],
     }),
+    exportAffiliateOrders: method({
+      GET: [getExportedAffiliateOrders],
+    }),
+    exportCommissionBySKU: method({
+      GET: [getExportedComissionsBySKU],
+    }),
   },
   events: {
+    onAppInstalled: [createEmailTemplates],
     setAffiliatesOrders: [validateOrder, parseData, saveOrUpdateAffiliateOrder],
     updateOrderStatus: [validateOrder, getAffiliateOrder, updateOrderStatus],
     updateInvoicedOrder: [

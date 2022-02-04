@@ -39,6 +39,15 @@
       }
     },
     {
+      "name": "vbase-read-write",
+      "attrs": {
+        "bucket": "affiliate_orders"
+      }
+    },
+    {
+      "name": "template-criar"
+    },
+    {
       "name": "colossus-fire-event"
     },
     {
