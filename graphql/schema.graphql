@@ -28,4 +28,6 @@ type Mutation {
     filter: CommissionsBySKUFilterInput
     sorting: CommissionsBySKUSortingInput
   ): Boolean
+
+  importCommissionsBySKU(file: Upload!): Boolean
 }

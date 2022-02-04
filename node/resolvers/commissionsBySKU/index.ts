@@ -1,8 +1,10 @@
+import FormData from 'form-data'
 import type {
   CommissionBySKU,
   QueryCommissionsBySkuArgs,
   MutationExportCommissionsBySkuArgs,
   MutationUpdateCommissionArgs,
+  MutationImportCommissionsBySkuArgs,
 } from 'vtex.affiliates-commission-service'
 
 import { ExportMDSheetService } from '../../services/ExportMDSheetService'
@@ -49,6 +51,25 @@ export const mutations = {
     getAllMDDocuments(sort, where)
       .then((documents) => saveToVBase(documents))
       .then((fileName) => sendFileViaEmail(fileName))
+
+    return true
+  },
+  importCommissionsBySKU: async (
+    _: unknown,
+    { file }: MutationImportCommissionsBySkuArgs,
+    { clients: { spreadsheetEventBroadcaster } }: Context
+  ) => {
+    const formData = new FormData()
+
+    try {
+      formData.append('file', file.createReadStream())
+      formData.append('fileName', file.filename)
+      formData.append('fileType', 'csv')
+      formData.append('appId', 'vtex.affiliates-commission-service')
+      spreadsheetEventBroadcaster.send(formData)
+    } catch (error) {
+      console.error(error)
+    }
 
     return true
   },
