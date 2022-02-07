@@ -5,7 +5,8 @@
     "co-body": "^6.0.0",
     "form-data": "^4.0.0",
     "ramda": "^0.25.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "xlsx": "^0.18.0"
   },
   "devDependencies": {
     "@types/co-body": "^0.0.3",
@@ -16,7 +17,7 @@
     "@vtex/test-tools": "^3.4.1",
     "@vtex/tsconfig": "^0.5.6",
     "typescript": "3.9.7",
-    "vtex.affiliates-commission-service": "https://gabiru--partnerintegrationbra.myvtex.com/_v/private/typings/linked/v1/vtex.affiliates-commission-service@0.13.0+build1643982276/public/@types/vtex.affiliates-commission-service"
+    "vtex.affiliates-commission-service": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.affiliates-commission-service@0.10.0/public/@types/vtex.affiliates-commission-service"
   },
   "scripts": {
     "lint": "tsc --noEmit --pretty",
