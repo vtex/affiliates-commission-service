@@ -15,8 +15,8 @@ export class SpreadsheetEventBroadcaster extends AppClient {
     })
   }
 
-  public send = (formData: FormData) => {
-    return this.http.post(`/_v/spreadsheetEventBroadcaster`, formData, {
+  public notify = (formData: FormData) => {
+    return this.http.post(`/notify`, formData, {
       headers: { ...formData.getHeaders() },
     })
   }

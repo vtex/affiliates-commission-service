@@ -64,7 +64,7 @@ export const mutations = {
 
     formData.append('file', createReadStream())
     formData.append('appId', 'vtex.affiliates-commission-service')
-    spreadsheetEventBroadcaster.send(formData)
+    spreadsheetEventBroadcaster.notify(formData)
 
     return true
   },
