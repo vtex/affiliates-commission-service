@@ -5,8 +5,7 @@
     "co-body": "^6.0.0",
     "form-data": "^4.0.0",
     "ramda": "^0.25.0",
-    "uuid": "^8.3.2",
-    "xlsx": "^0.17.5"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/co-body": "^0.0.3",
