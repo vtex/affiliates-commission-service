@@ -60,16 +60,11 @@ export const mutations = {
     { clients: { spreadsheetEventBroadcaster } }: Context
   ) => {
     const formData = new FormData()
+    const { createReadStream } = await file
 
-    try {
-      formData.append('file', file.createReadStream())
-      formData.append('fileName', file.filename)
-      formData.append('fileType', 'csv')
-      formData.append('appId', 'vtex.affiliates-commission-service')
-      spreadsheetEventBroadcaster.send(formData)
-    } catch (error) {
-      console.error(error)
-    }
+    formData.append('file', createReadStream())
+    formData.append('appId', 'vtex.affiliates-commission-service')
+    spreadsheetEventBroadcaster.send(formData)
 
     return true
   },

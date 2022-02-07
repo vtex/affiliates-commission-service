@@ -11,12 +11,13 @@ export class SpreadsheetEventBroadcaster extends AppClient {
         ...(context.authToken
           ? { VtexIdclientAutCookie: context.authToken }
           : null),
-        'Content-Type': 'multipart/form-data',
       },
     })
   }
 
   public send = (formData: FormData) => {
-    return this.http.post(`/_v/spreadsheetEventBroadcaster`, formData)
+    return this.http.post(`/_v/spreadsheetEventBroadcaster`, formData, {
+      headers: { ...formData.getHeaders() },
+    })
   }
 }
