@@ -19,6 +19,7 @@ import { resolvers } from './resolvers'
 import { getExportedAffiliateOrders } from './middlewares/exporting/getExportedAffiliateOrders'
 import { createEmailTemplates } from './middlewares/exporting/createEmailTemplates'
 import { getExportedComissionsBySKU } from './middlewares/exporting/getExportedComissionsBySKU'
+import { setCommissionEventHandler } from './middlewares/commission/setCommissionEventHandler'
 
 const TIMEOUT_MS = 2 * 1000
 
@@ -69,6 +70,7 @@ export default new Service({
   events: {
     onAppInstalled: [createEmailTemplates],
     setAffiliatesOrders: [validateOrder, parseData, saveOrUpdateAffiliateOrder],
+    setCommissionBySKU: [setCommissionEventHandler],
     updateOrderStatus: [validateOrder, getAffiliateOrder, updateOrderStatus],
     updateInvoicedOrder: [
       validateOrder,

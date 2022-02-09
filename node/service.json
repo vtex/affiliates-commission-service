@@ -32,6 +32,10 @@
       "sender": "vtex.orders-broadcast",
       "topics": ["order-created"]
     },
+    "setCommissionBySKU": {
+      "sender": "vtex.spreadsheet-event-broadcaster",
+      "topics": ["row.output"]
+    },
     "updateOrderStatus": {
       "sender": "vtex.orders-broadcast",
       "topics": ["payment-approved", "cancel"]
