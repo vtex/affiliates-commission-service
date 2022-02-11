@@ -43,6 +43,10 @@ export const APP_KEY_HEADER = 'x-vtex-api-appkey'
 export const APP_TOKEN_HEADER = 'x-vtex-api-apptoken'
 
 export const HTTP_ERRORS = {
+  noChanges: {
+    status: 304,
+    message: 'No changes',
+  },
   missingAuthentication: {
     status: 401,
     message: 'Missing appKey or appToken',
