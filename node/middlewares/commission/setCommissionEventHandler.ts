@@ -18,8 +18,9 @@ export async function setCommissionEventHandler(
 
   try {
     await commissionBySKU.saveOrUpdate({ id: String(id), commission })
-    // eslint-disable-next-line no-empty
-  } catch (e) {}
+  } catch (error) {
+    if (error?.response?.status !== 304) throw error
+  }
 
   await next()
 }
