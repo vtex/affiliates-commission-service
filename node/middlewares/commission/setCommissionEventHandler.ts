@@ -16,7 +16,10 @@ export async function setCommissionEventHandler(
 
   if (senderAppId !== 'vtex.affiliates-commission-service') return
 
-  await commissionBySKU.saveOrUpdate({ id: String(id), commission })
+  try {
+    await commissionBySKU.saveOrUpdate({ id: String(id), commission })
+    // eslint-disable-next-line no-empty
+  } catch (e) {}
 
   await next()
 }
