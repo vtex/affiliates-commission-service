@@ -3,9 +3,10 @@
     "@types/uuid": "^8.3.4",
     "@vtex/clients": "^2.19.1",
     "co-body": "^6.0.0",
+    "form-data": "^4.0.0",
     "ramda": "^0.25.0",
     "uuid": "^8.3.2",
-    "xlsx": "^0.17.5"
+    "xlsx": "^0.18.0"
   },
   "devDependencies": {
     "@types/co-body": "^0.0.3",
@@ -22,5 +23,5 @@
     "lint": "tsc --noEmit --pretty",
     "test": "vtex-test-tools test --collectCoverage"
   },
-  "version": "0.14.0"
+  "version": "0.13.0"
 }

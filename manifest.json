@@ -6,7 +6,9 @@
   "description": "App that hanldes all related to the commission of affiliates",
   "mustUpdateAt": "2018-01-04",
   "categories": [],
-  "dependencies": {},
+  "dependencies": {
+    "vtex.spreadsheet-event-broadcaster": "0.x"
+  },
   "builders": {
     "node": "6.x",
     "docs": "0.x",

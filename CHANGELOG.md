@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+###
+
+- GraphQL mutation and resolver for importing commissions by SKU sheet
+
 ## [0.14.0] - 2022-02-04
 
 ### Added
