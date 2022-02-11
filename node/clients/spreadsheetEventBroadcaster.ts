@@ -2,7 +2,7 @@ import type { InstanceOptions, IOContext } from '@vtex/api'
 import { AppClient } from '@vtex/api'
 import type FormData from 'form-data'
 
-export class SpreadsheetEventBroadcaster extends AppClient {
+export class SpreadsheetEventBroadcasterClient extends AppClient {
   constructor(context: IOContext, options?: InstanceOptions) {
     super('vtex.spreadsheet-event-broadcaster@0.x', context, {
       ...options,
