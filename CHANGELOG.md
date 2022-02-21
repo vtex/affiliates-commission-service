@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Masterdata aggregations client
+- Endpoint to consult affiliate orders aggregations
+
 ## [0.15.1] - 2022-02-11
 
 ### Fixed
