@@ -7,6 +7,7 @@ import type {
 
 import AuthenticationClient from './authenticationClient'
 import CheckoutExtended from './checkout'
+import { masterDataAggragateFor } from './masterDataAggegations/masterDataAggregationsFactory'
 import MessageCenterClient from './messageCenter'
 import { SpreadsheetEventBroadcasterClient } from './spreadsheetEventBroadcaster'
 
@@ -23,6 +24,13 @@ export class Clients extends IOClients {
     return this.getOrSet(
       'commissionBySKU',
       masterDataFor<CommissionBySKU>('commissionBySKU')
+    )
+  }
+
+  public get affiliatesOrdersAggregate() {
+    return this.getOrSet(
+      'affiliatesOrdersAggregate',
+      masterDataAggragateFor('affiliatesOrders')
     )
   }
 
