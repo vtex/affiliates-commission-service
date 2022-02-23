@@ -24,7 +24,7 @@ const normalizeEntityName = (str: string) => str.replace(/(\.)|-|:/gi, '_')
 const versionDescriptor = (isProduction: boolean, workspace: string) =>
   isProduction ? GLOBAL : `-${workspace}`
 
-export const masterDataAggragateFor = (
+export const masterDataAggregateFor = (
   entityName: string
 ): new (context: IOContext, options?: InstanceOptions) => MasterDataEntity => {
   return class extends MasterDataEntity {
