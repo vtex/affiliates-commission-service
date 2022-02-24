@@ -1,3 +1,5 @@
+import type { ReadStream } from 'fs'
+
 import FormData from 'form-data'
 import type {
   CommissionBySKU,
@@ -9,6 +11,7 @@ import type {
 
 import { ExportMDSheetService } from '../../services/ExportMDSheetService'
 import { parseCommissionsBySKUFilters } from '../../utils/filters'
+import { getHeaderRowFromStream, REQUIRED_HEADERS } from '../../utils/importing'
 
 export const queries = {
   commissionsBySKU: async (
@@ -56,18 +59,34 @@ export const mutations = {
   },
   importCommissionsBySKU: async (
     _: unknown,
-    { file }: MutationImportCommissionsBySkuArgs,
-    { clients: { spreadsheetEventBroadcaster } }: Context
-  ) => {
-    const formData = new FormData()
-    const { createReadStream } = await file
+    { file }: MutationImportCommissionsBySkuArgs
+  ) =>
+    // { clients: { spreadsheetEventBroadcaster } }: Context
+    {
+      const formData = new FormData()
+      const { createReadStream } = await file
 
-    formData.append('file', createReadStream())
-    formData.append('appId', 'vtex.affiliates-commission-service')
-    spreadsheetEventBroadcaster.notify(formData)
+      const stream: ReadStream = createReadStream()
 
-    return true
-  },
+      formData.append('file', stream)
+      formData.append('appId', 'vtex.affiliates-commission-service')
+
+      const fileHeaders = await getHeaderRowFromStream(stream)
+
+      REQUIRED_HEADERS.forEach((header) => {
+        if (!fileHeaders.includes(header)) {
+          throw new Error(
+            `The file must contain the following headers: ${REQUIRED_HEADERS.join(
+              ', '
+            )}`
+          )
+        }
+      })
+
+      // spreadsheetEventBroadcaster.notify(formData)
+
+      return true
+    },
 }
 
 export const fieldResolvers = {

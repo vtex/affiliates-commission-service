@@ -4,6 +4,7 @@
     "@vtex/clients": "^2.19.1",
     "co-body": "^6.0.0",
     "form-data": "^4.0.0",
+    "get-stream": "^6.0.1",
     "ramda": "^0.25.0",
     "uuid": "^8.3.2",
     "xlsx": "^0.18.0"
