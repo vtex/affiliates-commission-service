@@ -6283,13 +6283,13 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-"vtex.affiliates-commission-service@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.affiliates-commission-service@0.10.0/public/@types/vtex.affiliates-commission-service":
-  version "0.10.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.affiliates-commission-service@0.10.0/public/@types/vtex.affiliates-commission-service#41b2ca61c8a9b22dd89640749bf7d15843579125"
+"vtex.affiliates-commission-service@https://affiliates--partnerintegrationbra.myvtex.com/_v/private/typings/linked/v1/vtex.affiliates-commission-service@0.15.1+build1645449823/public/@types/vtex.affiliates-commission-service":
+  version "0.15.1"
+  resolved "https://affiliates--partnerintegrationbra.myvtex.com/_v/private/typings/linked/v1/vtex.affiliates-commission-service@0.15.1+build1645449823/public/@types/vtex.affiliates-commission-service#721dc846e5d19dc0f2a579cb413083f620a163ed"
 
-"vtex.spreadsheet-event-broadcaster@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.spreadsheet-event-broadcaster@0.1.0/public/_types/react":
-  version "0.0.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.spreadsheet-event-broadcaster@0.1.0/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+"vtex.spreadsheet-event-broadcaster@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.spreadsheet-event-broadcaster@0.2.0/public/@types/vtex.spreadsheet-event-broadcaster":
+  version "0.2.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.spreadsheet-event-broadcaster@0.2.0/public/@types/vtex.spreadsheet-event-broadcaster#25f2e6e2b6669fda16b1fe18605b55c3699769ed"
 
 w3c-hr-time@^1.0.1:
   version "1.0.2"

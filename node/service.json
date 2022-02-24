@@ -10,6 +10,10 @@
       "path": "/_v/affiliateOrders/:affiliateId",
       "public": true
     },
+    "affiliateOrdersAggregate": {
+      "path": "/_v/affiliateOrdersAggregate/:affiliateId",
+      "public": true
+    },
     "commissionBySKU": {
       "path": "/_v/commissionBySKU",
       "public": true
