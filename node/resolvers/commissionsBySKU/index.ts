@@ -59,34 +59,33 @@ export const mutations = {
   },
   importCommissionsBySKU: async (
     _: unknown,
-    { file }: MutationImportCommissionsBySkuArgs
-  ) =>
-    // { clients: { spreadsheetEventBroadcaster } }: Context
-    {
-      const formData = new FormData()
-      const { createReadStream } = await file
+    { file }: MutationImportCommissionsBySkuArgs,
+    { clients: { spreadsheetEventBroadcaster } }: Context
+  ) => {
+    const formData = new FormData()
+    const { createReadStream } = await file
 
-      const stream: ReadStream = createReadStream()
+    const stream: ReadStream = createReadStream()
 
-      formData.append('file', stream)
-      formData.append('appId', 'vtex.affiliates-commission-service')
+    formData.append('file', stream)
+    formData.append('appId', 'vtex.affiliates-commission-service')
 
-      const fileHeaders = await getHeaderRowFromStream(stream)
+    const fileHeaders = await getHeaderRowFromStream(stream)
 
-      REQUIRED_HEADERS.forEach((header) => {
-        if (!fileHeaders.includes(header)) {
-          throw new Error(
-            `The file must contain the following headers: ${REQUIRED_HEADERS.join(
-              ', '
-            )}`
-          )
-        }
-      })
+    REQUIRED_HEADERS.forEach((header) => {
+      if (!fileHeaders.includes(header)) {
+        throw new Error(
+          `The file must contain the following headers: ${REQUIRED_HEADERS.join(
+            ', '
+          )}`
+        )
+      }
+    })
 
-      // spreadsheetEventBroadcaster.notify(formData)
+    spreadsheetEventBroadcaster.notify(formData)
 
-      return true
-    },
+    return true
+  },
 }
 
 export const fieldResolvers = {
