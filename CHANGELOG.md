@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Commission importing now validates file columns before notifying broadcaster
 
+## [0.16.0] - 2022-02-24
+
+### Added
+
+- Masterdata aggregations client
+- Endpoint to consult affiliate orders aggregations
+
 ## [0.15.1] - 2022-02-11
 
 ### Fixed

@@ -25,6 +25,7 @@ export const LOGGER_ERROR_METRICS = {
   getAffiliateOrders: 'get-affiliate-orders',
   validateChangedItems: 'validate-changed-items',
   parseData: 'parse-data',
+  getAffiliateOrdersAggregate: 'get-affiliate-orders-aggregate',
 }
 
 export const LOGGER_ERROR_MESSAGES = {
@@ -37,6 +38,7 @@ export const LOGGER_ERROR_MESSAGES = {
   getAffiliateOrders: 'Error getting the affiliate orders',
   validateChangedItems: 'Error validating the changed items',
   parseData: 'Error parsing the order data',
+  getAffiliateOrdersAggregate: 'Error getting the affiliate order aggregate',
 }
 
 export const APP_KEY_HEADER = 'x-vtex-api-appkey'
