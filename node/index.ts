@@ -20,6 +20,7 @@ import { getExportedAffiliateOrders } from './middlewares/exporting/getExportedA
 import { createEmailTemplates } from './middlewares/exporting/createEmailTemplates'
 import { getExportedComissionsBySKU } from './middlewares/exporting/getExportedComissionsBySKU'
 import { setCommissionEventHandler } from './middlewares/commission/setCommissionEventHandler'
+import { getAffiliateOrdersAggregate } from './middlewares/getAffiliateOrdersAggregate'
 
 const TIMEOUT_MS = 2 * 1000
 
@@ -54,6 +55,9 @@ export default new Service({
   routes: {
     affiliateOrders: method({
       GET: [authenticateRequest, getAffiliateOrders],
+    }),
+    affiliateOrdersAggregate: method({
+      GET: [authenticateRequest, getAffiliateOrdersAggregate],
     }),
     commissionBySKU: method({
       GET: [parseGetRequest, getCommissionBySKU],
