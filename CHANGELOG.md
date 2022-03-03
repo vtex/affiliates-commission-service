@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Updated
+
+- Commission importing now validates file columns before notifying broadcaster
+
 ## [0.16.0] - 2022-02-24
 
 ### Added
