@@ -18,6 +18,10 @@
       "path": "/_v/commissionBySKU",
       "public": true
     },
+    "commissionLastImport": {
+      "path": "/_v/commissionLastImport/:fileId",
+      "public": true
+    },
     "exportAffiliateOrders": {
       "path": "/_v/export/affiliateOrders/:fileName",
       "public": true
