@@ -19,9 +19,18 @@ export async function getLastImportedFile(
     'info'
   )
 
+  if (!filename) {
+    ctx.status = 500
+    ctx.body = {
+      message: 'Error while fetching filename',
+    }
+
+    return
+  }
+
   const file = await vbase.getFileStream(lastImportBucket, `${fileId}`)
 
-  if (!file || !filename) {
+  if (!file) {
     ctx.status = 204
     ctx.body = {
       message: 'File not found',
