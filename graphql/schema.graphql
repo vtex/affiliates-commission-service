@@ -14,6 +14,8 @@ type Query {
     filter: CommissionsBySKUFilterInput
     sorting: CommissionsBySKUSortingInput
   ): CommissionsBySKUPage
+
+  lastImportedCommissionFileInfo: ImportedCommissionsFileInfo
 }
 
 type Mutation {
@@ -31,3 +33,5 @@ type Mutation {
 
   importCommissionsBySKU(file: Upload!): Boolean
 }
+
+scalar File

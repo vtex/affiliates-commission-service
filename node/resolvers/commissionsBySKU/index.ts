@@ -1,6 +1,3 @@
-import type { ReadStream } from 'fs'
-
-import FormData from 'form-data'
 import type {
   CommissionBySKU,
   QueryCommissionsBySkuArgs,
@@ -11,7 +8,7 @@ import type {
 
 import { ExportMDSheetService } from '../../services/ExportMDSheetService'
 import { parseCommissionsBySKUFilters } from '../../utils/filters'
-import { getHeaderRowFromStream, REQUIRED_HEADERS } from '../../utils/importing'
+import { ImportCommissionsService } from '../../services/ImportCommissionsService'
 
 export const queries = {
   commissionsBySKU: async (
@@ -26,6 +23,11 @@ export const queries = {
 
     return commissionBySKU.searchRaw(pagination, fields, sort, where)
   },
+  lastImportedCommissionFileInfo: async (
+    _: unknown,
+    __: unknown,
+    { clients: { vbase } }: Context
+  ) => vbase.getJSON('last-import', 'info'),
 }
 
 export const mutations = {
@@ -59,30 +61,25 @@ export const mutations = {
   },
   importCommissionsBySKU: async (
     _: unknown,
-    { file }: MutationImportCommissionsBySkuArgs,
-    { clients: { spreadsheetEventBroadcaster } }: Context
+    upload: MutationImportCommissionsBySkuArgs, // https://github.com/jaydenseric/graphql-upload#type-fileupload
+    ctx: Context
   ) => {
-    const formData = new FormData()
-    const { createReadStream } = await file
+    const file = await upload.file
 
-    const stream: ReadStream = createReadStream()
+    const {
+      initializeBuffer,
+      validateHeaderRow,
+      saveToVBase,
+      sendFileForProcessing,
+    } = new ImportCommissionsService(file, ctx)
 
-    formData.append('file', stream)
-    formData.append('appId', 'vtex.affiliates-commission-service')
+    await initializeBuffer()
 
-    const fileHeaders = await getHeaderRowFromStream(stream)
+    await validateHeaderRow()
 
-    REQUIRED_HEADERS.forEach((header) => {
-      if (!fileHeaders.includes(header)) {
-        throw new Error(
-          `The file must contain the following headers: ${REQUIRED_HEADERS.join(
-            ', '
-          )}`
-        )
-      }
-    })
+    await saveToVBase()
 
-    spreadsheetEventBroadcaster.notify(formData)
+    await sendFileForProcessing()
 
     return true
   },

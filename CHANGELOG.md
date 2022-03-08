@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Get last imported commission file service route
+
+### Updated
+
+- Commission importing now saves file to VBase
+
 ## [0.17.0] - 2022-03-03
 
 ### Updated

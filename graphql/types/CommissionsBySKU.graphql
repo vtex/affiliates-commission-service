@@ -9,3 +9,10 @@ type CommissionsBySKUPage {
   data: [CommissionBySKU]!
   pagination: Pagination!
 }
+
+type ImportedCommissionsFileInfo {
+  fileId: ID!
+  filename: String!
+  uploadDate: String!
+  uploadedBy: String!
+}

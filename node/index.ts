@@ -21,6 +21,7 @@ import { createEmailTemplates } from './middlewares/exporting/createEmailTemplat
 import { getExportedComissionsBySKU } from './middlewares/exporting/getExportedComissionsBySKU'
 import { setCommissionEventHandler } from './middlewares/commission/setCommissionEventHandler'
 import { getAffiliateOrdersAggregate } from './middlewares/getAffiliateOrdersAggregate'
+import { getLastImportedFile } from './middlewares/commission/getLastImportedFile'
 
 const TIMEOUT_MS = 2 * 1000
 
@@ -63,6 +64,9 @@ export default new Service({
       GET: [parseGetRequest, getCommissionBySKU],
       PUT: [setCommissionBySKU],
       DELETE: [deleteCommissionBySKU],
+    }),
+    commissionLastImport: method({
+      GET: [getLastImportedFile],
     }),
     exportAffiliateOrders: method({
       GET: [getExportedAffiliateOrders],
