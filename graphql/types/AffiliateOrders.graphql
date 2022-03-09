@@ -29,5 +29,5 @@ type AffiliateOrdersTotalizers {
 type AffiliateOrdersPage {
   data: [AffiliateOrder]!
   pagination: Pagination!
-  totalizers: AffiliateOrdersTotalizers
+  totalizers(filter: AffiliateOrdersFilterInput): AffiliateOrdersTotalizers
 }
