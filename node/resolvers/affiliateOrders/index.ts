@@ -63,7 +63,10 @@ export const fieldResolvers = {
         : undefined,
   },
   AffiliateOrdersPage: {
-    totalizers: (_: unknown, args: QueryAffiliateOrdersArgs, ctx: Context) =>
-      totalizersFieldResolver(args, ctx),
+    totalizers: (
+      _: unknown,
+      args: Pick<QueryAffiliateOrdersArgs, 'filter'>,
+      ctx: Context
+    ) => totalizersFieldResolver(args, ctx),
   },
 }

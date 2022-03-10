@@ -3,7 +3,7 @@ import type { QueryAffiliateOrdersArgs } from 'vtex.affiliates-commission-servic
 import { parseAffiliateOrdersFilters } from '../../utils/filters'
 
 export const totalizersFieldResolver = async (
-  args: QueryAffiliateOrdersArgs,
+  args: Pick<QueryAffiliateOrdersArgs, 'filter'>,
   ctx: Context
 ) => {
   const { filter } = args
