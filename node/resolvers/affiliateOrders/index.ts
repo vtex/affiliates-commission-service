@@ -7,6 +7,7 @@ import type {
 
 import { ExportMDSheetService } from '../../services/ExportMDSheetService'
 import { parseAffiliateOrdersFilters } from '../../utils/filters'
+import { totalizersFieldResolver } from './totalizersFieldResolver'
 
 export const queries = {
   affiliateOrders: async (
@@ -60,5 +61,12 @@ export const fieldResolvers = {
       typeof parent.orderTotalCommission === 'number'
         ? parent.orderTotalCommission / 100
         : undefined,
+  },
+  AffiliateOrdersPage: {
+    totalizers: (
+      _: unknown,
+      args: Pick<QueryAffiliateOrdersArgs, 'filter'>,
+      ctx: Context
+    ) => totalizersFieldResolver(args, ctx),
   },
 }

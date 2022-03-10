@@ -20,7 +20,14 @@ type OrderItem {
   commission: Float!
 }
 
+type AffiliateOrdersTotalizers {
+  total: Int
+  totalCommissionSum: Float
+  totalOrderSum: Float
+}
+
 type AffiliateOrdersPage {
   data: [AffiliateOrder]!
   pagination: Pagination!
+  totalizers(filter: AffiliateOrdersFilterInput): AffiliateOrdersTotalizers
 }
