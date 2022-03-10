@@ -21,8 +21,8 @@ export const totalizersFieldResolver = async (
   )
 
   return {
-    total: commissionValues.all_docs_aggregated,
-    totalCommissionSum: commissionValues.result / 100,
-    totalOrderSum: totalOrderValues.result / 100,
+    total: commissionValues?.all_docs_aggregated,
+    totalCommissionSum: commissionValues?.result / 100,
+    totalOrderSum: totalOrderValues?.result / 100,
   }
 }
