@@ -7,6 +7,7 @@ import FormData from 'form-data'
 import { v4 as uuid } from 'uuid'
 
 import { getAdminUserEmail } from '../utils/exporting'
+import { HTTP_ERRORS } from '../utils/constants'
 
 export const lastImportBucket = 'last-import'
 
@@ -86,7 +87,7 @@ export class ImportCommissionsService {
       )
       .catch((error) => {
         // We ignore the 404 because this just say that the user didn't made an import by file
-        if (error.statusCode !== 404) {
+        if (error.statusCode !== HTTP_ERRORS.notFound.status) {
           throw error
         }
       })
