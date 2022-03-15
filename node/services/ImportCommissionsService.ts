@@ -79,12 +79,17 @@ export class ImportCommissionsService {
       buffer,
     } = this
 
-    const { fileId: oldFileId } = await vbase.getJSON<LastImportFileInfo>(
-      lastImportBucket,
-      'info'
-    )
-
-    oldFileId && (await vbase.deleteFile(lastImportBucket, oldFileId))
+    await vbase
+      .getJSON<LastImportFileInfo>(lastImportBucket, 'info')
+      .then(({ fileId: oldFileId }) =>
+        vbase.deleteFile(lastImportBucket, oldFileId)
+      )
+      .catch((error) => {
+        // We ignore the 404 because this just say that the user didn't made an import by file
+        if (error.statusCode !== 404) {
+          throw error
+        }
+      })
 
     const newFileId = uuid()
 
