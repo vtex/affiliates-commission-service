@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Fix the file import logic for the first file upload
+
 ## [0.19.0] - 2022-03-10
 
 ### Added
