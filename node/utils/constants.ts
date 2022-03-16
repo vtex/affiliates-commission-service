@@ -65,6 +65,10 @@ export const HTTP_ERRORS = {
     status: 400,
     message: (params: string) => `Missing params: ${params}`,
   },
+  notFound: {
+    status: 404,
+    message: 'Not found',
+  },
 }
 
 export const MD_READ_PERMISSION = 'READONLY_USER_DS'

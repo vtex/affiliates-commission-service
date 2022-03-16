@@ -7,6 +7,7 @@ import FormData from 'form-data'
 import { v4 as uuid } from 'uuid'
 
 import { getAdminUserEmail } from '../utils/exporting'
+import { HTTP_ERRORS } from '../utils/constants'
 
 export const lastImportBucket = 'last-import'
 
@@ -79,12 +80,17 @@ export class ImportCommissionsService {
       buffer,
     } = this
 
-    const { fileId: oldFileId } = await vbase.getJSON<LastImportFileInfo>(
-      lastImportBucket,
-      'info'
-    )
-
-    oldFileId && (await vbase.deleteFile(lastImportBucket, oldFileId))
+    await vbase
+      .getJSON<LastImportFileInfo>(lastImportBucket, 'info')
+      .then(({ fileId: oldFileId }) =>
+        vbase.deleteFile(lastImportBucket, oldFileId)
+      )
+      .catch((error) => {
+        // We ignore 404 errors because it just means the user hasn't made any file imports yet.
+        if (error.statusCode !== HTTP_ERRORS.notFound.status) {
+          throw error
+        }
+      })
 
     const newFileId = uuid()
 
