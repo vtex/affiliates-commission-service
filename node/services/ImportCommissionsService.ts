@@ -86,7 +86,7 @@ export class ImportCommissionsService {
         vbase.deleteFile(lastImportBucket, oldFileId)
       )
       .catch((error) => {
-        // We ignore the 404 because this just say that the user didn't made an import by file
+        // We ignore 404 errors because it just means the user hasn't made any file imports yet.
         if (error.statusCode !== HTTP_ERRORS.notFound.status) {
           throw error
         }
