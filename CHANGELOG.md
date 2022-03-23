@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Fix vbase response status code variable name
+
 ## [0.20.0] - 2022-03-16
 
 ## [0.19.1] - 2022-03-16
