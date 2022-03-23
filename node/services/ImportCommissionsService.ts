@@ -87,7 +87,7 @@ export class ImportCommissionsService {
       )
       .catch((error) => {
         // We ignore 404 errors because it just means the user hasn't made any file imports yet.
-        if (error.statusCode !== HTTP_ERRORS.notFound.status) {
+        if (error.response.status !== HTTP_ERRORS.notFound.status) {
           throw error
         }
       })
