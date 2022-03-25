@@ -1,5 +1,5 @@
 import {
-  ALL_MD_FIELDS,
+  SHAREABLE_MD_FIELDS,
   HTTP_ERRORS,
   LOGGER_ERROR_MESSAGES,
   LOGGER_ERROR_METRICS,
@@ -14,7 +14,7 @@ export async function getAffiliateOrders(
   const { page, pageSize } = ctx.query
   const { affiliatesOrders } = ctx.clients
   const { logger } = ctx.vtex
-  const fieldsWithUpdateDate = [...ALL_MD_FIELDS, 'updatedIn']
+  const fieldsWithUpdateDate = [...SHAREABLE_MD_FIELDS, 'updatedIn']
   const whereQuery = `affiliateId = '${affiliateId}'`
   const sortBy = 'orderDate asc'
 
