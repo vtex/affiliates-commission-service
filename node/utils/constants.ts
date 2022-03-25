@@ -2,16 +2,17 @@ export const CUSTOM_DATA_APP_ID = 'affiliates'
 export const CUSTOM_DATA_FIELD_ID = 'affiliateId'
 export const SUCCESS = 200
 
-export const ALL_MD_FIELDS = [
+export const SHAREABLE_MD_FIELDS = [
   'id',
   'affiliateId',
   'status',
-  'userEmail',
   'orderDate',
   'orderItems',
   'orderTotalCommission',
   'orderTotal',
 ]
+
+export const ALL_MD_FIELDS = [...SHAREABLE_MD_FIELDS, 'userEmail']
 
 export const INVOICED_STATUS = 'invoiced'
 
