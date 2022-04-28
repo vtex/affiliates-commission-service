@@ -1678,10 +1678,10 @@
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.3.tgz#781d360c282436494b32fe7d9f7f8e64b3118aa3"
   integrity sha512-fbF6oTd4sGGy0xjHPKAt+eS2CrxJ3+6gQ3FGcBoIJR2TLAyCkCyI8JqZNy+FeON0AhVgNJoUumVoZQjBFUqHkw==
 
-"@vtex/api@6.45.10":
-  version "6.45.10"
-  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.45.10.tgz#d338d05341e176593124fa171ea5710eee802e61"
-  integrity sha512-1OllEdBosqGbyGSvQtJzplmOISj2jalpgTDhRWlzhCdkGYbAg0Sm4doudKfZdvizu/6D1Dz4Uy2YncT6M3Vzng==
+"@vtex/api@6.45.12":
+  version "6.45.12"
+  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.45.12.tgz#b13c04398b12f576263ea823369f09c970d57479"
+  integrity sha512-SVLKo+Q/TxQy+1UKzH8GswTI3F2OCRCLfgaNQOrVAVdbM6Ci4wzTeX8j/S4Q1aEEnqBFlH/wVpHf8I6NBa+g9A==
   dependencies:
     "@types/koa" "^2.11.0"
     "@types/koa-compose" "^3.2.3"
@@ -1724,10 +1724,10 @@
     uuid "^3.3.3"
     xss "^1.0.6"
 
-"@vtex/clients@^2.19.1":
-  version "2.19.4"
-  resolved "https://registry.yarnpkg.com/@vtex/clients/-/clients-2.19.4.tgz#accabee2352f3863f5be906c6e2ee0bdb81b100c"
-  integrity sha512-Bdmi8yQBcj7woX/1QxAebVMOzal+6GWyQYIQNWQhyNqbKq0BnBjwxVGG44T0zxawBPto6PuULTEP8r1SI3hmWQ==
+"@vtex/clients@^2.19.5":
+  version "2.19.5"
+  resolved "https://registry.yarnpkg.com/@vtex/clients/-/clients-2.19.5.tgz#8997311654ceb9ab672b168bad266840d3454bdd"
+  integrity sha512-fGDoB2FxyvQSFNbppaLOvS6B+Y8SzBkN0kwGDYPX00DDbNCHIbhajTlGSJ93GvNna6CWszUFNfrhAr4rhPE2KQ==
   dependencies:
     "@gocommerce/utils" "^0.7.3"
 
@@ -5809,7 +5809,7 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
-"stats-lite@github:vtex/node-stats-lite#dist":
+stats-lite@vtex/node-stats-lite#dist:
   version "2.2.0"
   resolved "https://codeload.github.com/vtex/node-stats-lite/tar.gz/1b0d39cc41ef7aaecfd541191f877887a2044797"
   dependencies:
