@@ -69,28 +69,36 @@ export class ExportMDSheetService {
   public getAllMDDocuments = async (sort?: string, where?: string) => {
     const { MDClient, fields, formatAffiliateOrders } = this
     const pageSize = PAGE_SIZE_FOR_EXPORTING
-    const {
-      pagination: { total },
-    } = await MDClient.searchRaw({ page: 1, pageSize: 1 }, fields, sort, where)
+    let MD_TOKEN = ''
 
-    const totalPages = Math.ceil(total / pageSize)
+    let hasMoreData = true
+    const responseData: unknown[][] = []
 
-    const promises = []
+    while (hasMoreData) {
+      // eslint-disable-next-line no-await-in-loop
+      const { data, mdToken } = await MDClient.scroll({
+        fields,
+        size: pageSize,
+        sort,
+        where,
+        mdToken: MD_TOKEN !== '' ? MD_TOKEN : undefined,
+      })
 
-    for (let page = 1; page <= totalPages; page++) {
-      promises.push(
-        MDClient.search({ page, pageSize }, fields, sort, where).then(
-          (documentPage) =>
-            this.entity === 'affiliatesOrders'
-              ? formatAffiliateOrders(documentPage as AffiliatesOrders[])
-              : documentPage
-        )
+      responseData.push(
+        this.entity === 'affiliatesOrders'
+          ? formatAffiliateOrders(data as AffiliatesOrders[])
+          : data
       )
+      // The first call is made without the token, then the first response gives us that token
+      // We use that token to make the next calls
+      MD_TOKEN = MD_TOKEN !== '' ? MD_TOKEN : mdToken
+
+      if (data.length === 0) {
+        hasMoreData = false
+      }
     }
 
-    const promiseResults = await Promise.all(promises)
-
-    const documents = promiseResults.flat()
+    const documents = responseData.flat()
 
     return documents
   }
