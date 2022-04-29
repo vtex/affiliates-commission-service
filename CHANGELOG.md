@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.20.6] - 2022-04-29
+
 ### Changed
 
 - Update export method to use the MD scroll function
