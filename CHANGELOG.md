@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Add ID field to Affiliates table search feature
+- Add payment-pending status to Orders table
+
 ## [0.20.6] - 2022-04-29
 
 ### Changed
