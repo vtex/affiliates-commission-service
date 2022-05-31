@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Add payment-pending topic to order status change event handler
+
 ## [0.20.6] - 2022-04-29
 
 ### Changed
