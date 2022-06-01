@@ -9,7 +9,7 @@ export async function setCommissionEventHandler(
 ) {
   const {
     body: {
-      data: { id, commission },
+      data: { id, commission, refId },
       senderAppId,
     },
     clients: { commissionBySKU },
@@ -18,7 +18,11 @@ export async function setCommissionEventHandler(
   if (senderAppId !== 'vtex.affiliates-commission-service') return
 
   try {
-    await commissionBySKU.saveOrUpdate({ id: String(id), commission })
+    await commissionBySKU.saveOrUpdate({
+      id: String(id),
+      commission,
+      refId: refId && String(refId),
+    })
   } catch (error) {
     if (error?.response?.status !== HTTP_ERRORS.noChanges.status) throw error
   }
