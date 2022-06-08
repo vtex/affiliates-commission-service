@@ -26,8 +26,18 @@ type AffiliateOrdersTotalizers {
   totalOrderSum: Float
 }
 
+type AffiliateProfileOrdersTotalizers {
+  total: Int
+  totalCancelled: Int
+  totalApproved: Int
+  totalInvoiced: Int
+}
+
 type AffiliateOrdersPage {
   data: [AffiliateOrder]!
   pagination: Pagination!
   totalizers(filter: AffiliateOrdersFilterInput): AffiliateOrdersTotalizers
+  totalizersProfile(
+    filter: AffiliateOrdersFilterInput
+  ): AffiliateProfileOrdersTotalizers
 }
