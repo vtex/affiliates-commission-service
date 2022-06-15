@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Added a new layer of data that will return specific order values based on three different status `cancelled`, `invoiced` and `payment-approved`
+
 ## [0.21.0] - 2022-05-31
 
 ### Fixed
