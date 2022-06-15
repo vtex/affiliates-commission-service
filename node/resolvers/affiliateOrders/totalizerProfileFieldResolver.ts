@@ -12,12 +12,18 @@ export const totalizersProfileFieldResolver = async (
 
   const where = filter ? parseAffiliateOrdersFilters(filter) : ''
 
-  console.log(`FILTER`, filter)
-  console.log(
-    `FILTER NAME`,
-    filter ? 'affiliateId' in filter : 'Não tem objeto'
-  )
-  console.log(`FILTER STATUS`, filter ? 'status' in filter : 'Não tem objeto')
+  if (filter?.status != null) {
+    const allOrders = await affiliatesOrdersAggregate.aggregateValue(
+      'orderTotal',
+      where
+    )
+
+    return {
+      totalCancelled: filter?.status === 'cancelled' ? allOrders : 0,
+      totalApproved: filter?.status === 'payment-approved' ? allOrders : 0,
+      totalInvoiced: filter?.status === 'invoiced' ? allOrders : 0,
+    }
+  }
 
   const whereCancelled = where
     ? `${where} AND status=cancelled`
@@ -30,11 +36,6 @@ export const totalizersProfileFieldResolver = async (
   const whereInvoiced = where
     ? `${where} AND status=invoiced`
     : 'status=invoiced'
-
-  const commissionValues = await affiliatesOrdersAggregate.aggregateValue(
-    'orderTotalCommission',
-    where
-  )
 
   const cancelledValue = await affiliatesOrdersAggregate.aggregateValue(
     'orderTotal',
@@ -52,7 +53,6 @@ export const totalizersProfileFieldResolver = async (
   )
 
   return {
-    total: commissionValues?.all_docs_aggregated,
     totalCancelled: cancelledValue?.result,
     totalApproved: approvedValue?.result,
     totalInvoiced: invoicedValue?.result,

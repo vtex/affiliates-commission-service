@@ -27,7 +27,6 @@ type AffiliateOrdersTotalizers {
 }
 
 type AffiliateProfileOrdersTotalizers {
-  total: Int
   totalCancelled: Int
   totalApproved: Int
   totalInvoiced: Int
