@@ -12,70 +12,44 @@ export const totalizersProfileFieldResolver = async (
 
   const where = filter ? parseAffiliateOrdersFilters(filter) : ''
 
-  const whereCancelled = where
-    ? `${where} AND status=cancelled`
-    : 'status=cancelled'
+  const whereCanceled = where
+    ? `${where} AND (status=canceled OR status=cancel)`
+    : '(status=canceled OR status=cancel)'
 
-  const whereApproved = where
-    ? `${where} AND status=payment-approved`
-    : 'status=payment-approved'
-
-  const wherePending = where
-    ? `${where} AND status=payment-pending`
-    : 'status=payment-pending'
-
-  const whereCreated = where
-    ? `${where} AND status=order-created`
-    : 'status=order-created'
+  const whereOngoing = where
+    ? `${where} AND (status=payment-approved OR status=payment-pending OR status=on-order-completed)`
+    : '(status=payment-approved OR status=payment-pending OR status=on-order-completed)'
 
   const whereInvoiced = where
     ? `${where} AND status=invoiced`
     : 'status=invoiced'
 
-  const approvedValue = await affiliatesOrdersAggregate.aggregateValue(
+  const canceledValue = await affiliatesOrdersAggregate.aggregateValue(
     'orderTotal',
-    whereApproved
+    whereCanceled
   )
 
-  const pendingValue = await affiliatesOrdersAggregate.aggregateValue(
+  const onGoingValue = await affiliatesOrdersAggregate.aggregateValue(
     'orderTotal',
-    wherePending
+    whereOngoing
   )
 
-  const createdValue = await affiliatesOrdersAggregate.aggregateValue(
+  const invoicedValue = await affiliatesOrdersAggregate.aggregateValue(
     'orderTotal',
-    whereCreated
+    whereInvoiced
   )
 
-  const onGoingValue =
-    approvedValue.result + pendingValue.result + createdValue.result
-
-  if (filter?.status == null) {
-    const cancelledValue = await affiliatesOrdersAggregate.aggregateValue(
-      'orderTotal',
-      whereCancelled
-    )
-
-    const invoicedValue = await affiliatesOrdersAggregate.aggregateValue(
-      'orderTotal',
-      whereInvoiced
-    )
-
+  if (filter?.status != null) {
     return {
-      totalCancelled: cancelledValue?.result,
-      totalApproved: onGoingValue,
-      totalInvoiced: invoicedValue?.result,
+      totalCancelled: filter?.status === 'cancel' ? canceledValue.result : 0,
+      totalOngoing: filter?.status === 'ongoing' ? onGoingValue.result : 0,
+      totalInvoiced: filter?.status === 'invoiced' ? invoicedValue.result : 0,
     }
   }
 
-  const allOrders = await affiliatesOrdersAggregate.aggregateValue(
-    'orderTotal',
-    where
-  )
-
   return {
-    totalCancelled: filter?.status === 'cancelled' ? allOrders : 0,
-    totalApproved: filter?.status === 'payment-approved' ? onGoingValue : 0,
-    totalInvoiced: filter?.status === 'invoiced' ? allOrders : 0,
+    totalCancelled: canceledValue?.result,
+    totalOngoing: onGoingValue?.result,
+    totalInvoiced: invoicedValue?.result,
   }
 }
