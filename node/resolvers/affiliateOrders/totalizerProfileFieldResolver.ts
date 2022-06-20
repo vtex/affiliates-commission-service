@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type { QueryAffiliateOrdersArgs } from 'vtex.affiliates-commission-service'
 
 import { parseAffiliateOrdersFilters } from '../../utils/filters'
