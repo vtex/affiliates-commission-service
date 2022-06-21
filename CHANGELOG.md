@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- VTEX Setup -i environment adjustments
+
 ## [0.22.0] - 2022-06-21
 
 ### Added
