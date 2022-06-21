@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type { QueryAffiliateOrdersArgs } from 'vtex.affiliates-commission-service'
 
 import { parseAffiliateOrdersFilters } from '../../utils/filters'
@@ -12,7 +11,6 @@ export const totalizersProfileFieldResolver = async (
 
   if (filter?.status === 'cancel') {
     delete filter.status
-    console.log(filter)
     const where = filter ? parseAffiliateOrdersFilters(filter) : ''
     const whereCanceled = where
       ? `${where} AND (status=canceled OR status=cancel)`
