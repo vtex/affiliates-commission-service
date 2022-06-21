@@ -7,6 +7,7 @@ import type {
 
 import { ExportMDSheetService } from '../../services/ExportMDSheetService'
 import { parseAffiliateOrdersFilters } from '../../utils/filters'
+import { totalizersProfileFieldResolver } from './totalizerProfileFieldResolver'
 import { totalizersFieldResolver } from './totalizersFieldResolver'
 
 export const queries = {
@@ -68,5 +69,10 @@ export const fieldResolvers = {
       args: Pick<QueryAffiliateOrdersArgs, 'filter'>,
       ctx: Context
     ) => totalizersFieldResolver(args, ctx),
+    totalizersProfile: (
+      _: unknown,
+      args: Pick<QueryAffiliateOrdersArgs, 'filter'>,
+      ctx: Context
+    ) => totalizersProfileFieldResolver(args, ctx),
   },
 }
