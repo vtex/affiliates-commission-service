@@ -7,9 +7,13 @@ export const totalizersFieldResolver = async (
   ctx: Context
 ) => {
   const { filter } = args
-  const { affiliatesOrdersAggregate } = ctx.clients
+  const {
+    clients: { affiliatesOrdersAggregate },
+    state: { affiliateId },
+  } = ctx
 
-  const where = filter ? parseAffiliateOrdersFilters(filter) : ''
+  const where = filter ? parseAffiliateOrdersFilters(filter, affiliateId) : ''
+
   const commissionValues = await affiliatesOrdersAggregate.aggregateValue(
     'orderTotalCommission',
     where

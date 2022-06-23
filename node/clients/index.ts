@@ -10,6 +10,7 @@ import CheckoutExtended from './checkout'
 import { masterDataAggregateFor } from './masterDataAggegations/masterDataAggregationsFactory'
 import MessageCenterClient from './messageCenter'
 import { SpreadsheetEventBroadcasterClient } from './spreadsheetEventBroadcaster'
+import { PROVIDER_APP_ID } from '../utils/constants'
 
 // Extend the default IOClients implementation with our own custom clients.
 export class Clients extends IOClients {
@@ -17,6 +18,13 @@ export class Clients extends IOClients {
     return this.getOrSet(
       'affiliatesOrders',
       masterDataFor<AffiliatesOrders>('affiliatesOrders')
+    )
+  }
+
+  public get affiliates() {
+    return this.getOrSet(
+      'affiliates',
+      masterDataFor('affiliates', PROVIDER_APP_ID)
     )
   }
 

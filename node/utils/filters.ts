@@ -3,14 +3,27 @@ import type {
   CommissionsBySkuFilterInput,
 } from 'vtex.affiliates-commission-service'
 
-export const parseAffiliateOrdersFilters = ({
-  affiliateId,
-  status,
-  dateRange,
-}: AffiliateOrdersFilterInput) => {
+export const parseAffiliateOrdersFilters = (
+  { affiliateId, status, dateRange }: AffiliateOrdersFilterInput,
+  affiliates?: string[]
+) => {
   const filterArray: string[] = []
+  const affiliateIdFilter: string[] = []
 
-  affiliateId && filterArray.push(`affiliateId=${affiliateId}`)
+  if (affiliateId) {
+    affiliates?.length
+      ? affiliates.map((affiliate) => {
+          return affiliateIdFilter.push(`affiliateId=${affiliate}`)
+        })
+      : filterArray.push(`affiliateId=${affiliateId}`)
+  }
+
+  const affiliateIdList = affiliateIdFilter.join(' OR ')
+
+  affiliateId && affiliates?.length
+    ? filterArray.push(affiliateIdList)
+    : undefined
+
   status && filterArray.push(`status=${status}`)
   dateRange &&
     filterArray.push(

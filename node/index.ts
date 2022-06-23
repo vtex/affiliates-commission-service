@@ -40,6 +40,7 @@ const clients: ClientsConfig<Clients> = {
 
 interface State extends RecorderState {
   commissionInput: CommissionServiceInputData
+  affiliateId: string[]
 }
 
 declare global {
