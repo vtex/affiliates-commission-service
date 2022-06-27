@@ -3,16 +3,29 @@ import type {
   CommissionsBySkuFilterInput,
 } from 'vtex.affiliates-commission-service'
 
-export const parseAffiliateOrdersFilters = (
+export const parseAffiliateOrdersFilters = async (
   { affiliateId, status, dateRange }: AffiliateOrdersFilterInput,
-  affiliates?: string[]
+  affiliates?: Context['clients']['affiliates']
 ) => {
   const filterArray: string[] = []
   const affiliateIdFilter: string[] = []
+  const fields = ['_all']
+
+  let MD_TOKEN
+
+  const affiliateList = await affiliates?.scroll({
+    fields,
+    where: `name=*${affiliateId}*`,
+    mdToken: MD_TOKEN !== undefined ? MD_TOKEN : undefined,
+  })
+
+  MD_TOKEN = MD_TOKEN !== undefined ? MD_TOKEN : affiliateList?.mdToken
+
+  const affiliatesIdList = affiliateList?.data?.map((affiliate) => affiliate.id)
 
   if (affiliateId) {
-    affiliates?.length
-      ? affiliates.map((affiliate) => {
+    affiliatesIdList?.length
+      ? affiliatesIdList.map((affiliate) => {
           return affiliateIdFilter.push(`affiliateId=${affiliate}`)
         })
       : filterArray.push(`affiliateId=${affiliateId}`)
@@ -20,7 +33,7 @@ export const parseAffiliateOrdersFilters = (
 
   const affiliateIdList = affiliateIdFilter.join(' OR ')
 
-  affiliateId && affiliates?.length
+  affiliateId && affiliatesIdList?.length
     ? filterArray.push(affiliateIdList)
     : undefined
 

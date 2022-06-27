@@ -31,7 +31,7 @@ export async function getAffiliateOrdersAggregate(
     return
   }
 
-  const whereQuery = parseAffiliateOrdersFilters(parseObject)
+  const whereQuery = await parseAffiliateOrdersFilters(parseObject)
 
   try {
     const result = await affiliatesOrdersAggregate.aggregateValue(

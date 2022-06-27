@@ -11,7 +11,7 @@ export const totalizersProfileFieldResolver = async (
 
   if (filter?.status === 'cancel') {
     delete filter.status
-    const where = filter ? parseAffiliateOrdersFilters(filter) : ''
+    const where = filter ? await parseAffiliateOrdersFilters(filter) : ''
     const whereCanceled = where
       ? `${where} AND (status=canceled OR status=cancel)`
       : '(status=canceled OR status=cancel)'
@@ -30,7 +30,7 @@ export const totalizersProfileFieldResolver = async (
 
   if (filter?.status === 'ongoing') {
     delete filter.status
-    const where = filter ? parseAffiliateOrdersFilters(filter) : ''
+    const where = filter ? await parseAffiliateOrdersFilters(filter) : ''
 
     const whereOngoing = where
       ? `${where} AND (status=payment-approved OR status=payment-pending OR status=on-order-completed)`
@@ -50,7 +50,7 @@ export const totalizersProfileFieldResolver = async (
 
   if (filter?.status === 'invoiced') {
     delete filter.status
-    const where = filter ? parseAffiliateOrdersFilters(filter) : ''
+    const where = filter ? await parseAffiliateOrdersFilters(filter) : ''
 
     const whereInvoiced = where
       ? `${where} AND status=invoiced`
@@ -68,7 +68,7 @@ export const totalizersProfileFieldResolver = async (
     }
   }
 
-  const where = filter ? parseAffiliateOrdersFilters(filter) : ''
+  const where = filter ? await parseAffiliateOrdersFilters(filter) : ''
   const whereCanceled = where
     ? `${where} AND (status=canceled OR status=cancel)`
     : '(status=canceled OR status=cancel)'

@@ -13,6 +13,9 @@ describe('affiliateOrders', () => {
       affiliatesOrders: {
         searchRaw: jest.fn(),
       },
+      affiliates: {
+        search: jest.fn(),
+      },
     },
   } as unknown as Context
 
@@ -40,7 +43,10 @@ describe('affiliateOrders', () => {
       },
       ['_all'],
       'orderTotal DESC',
-      parseAffiliateOrdersFilters({ affiliateId: 'mockedAffiliateId' })
+      parseAffiliateOrdersFilters(
+        { affiliateId: 'mockedAffiliateId' },
+        mockedContext.clients.affiliates
+      )
     )
   })
 })

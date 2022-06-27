@@ -9,32 +9,19 @@ import { ExportMDSheetService } from '../../services/ExportMDSheetService'
 import { parseAffiliateOrdersFilters } from '../../utils/filters'
 import { totalizersProfileFieldResolver } from './totalizerProfileFieldResolver'
 import { totalizersFieldResolver } from './totalizersFieldResolver'
-import type { Affiliate } from '../../typings/affiliate'
 
 export const queries = {
   affiliateOrders: async (
     _: unknown,
     { page, pageSize, filter, sorting }: QueryAffiliateOrdersArgs,
-    { clients: { affiliatesOrders, affiliates }, state }: Context
+    { clients: { affiliatesOrders, affiliates } }: Context
   ) => {
     const pagination = { page, pageSize }
     const fields = ['_all']
     const sort = sorting ? `${sorting.field} ${sorting.order}` : undefined
-    const affiliatesList = filter?.affiliateId
-      ? ((await affiliates.search(
-          pagination,
-          fields,
-          undefined,
-          `name=*${filter?.affiliateId}*`
-        )) as unknown as Affiliate[])
-      : undefined
-
-    const affiliatesIdList = affiliatesList?.map((affiliate) => affiliate.id)
-
-    state.affiliateId = affiliatesIdList ?? []
 
     const where = filter
-      ? parseAffiliateOrdersFilters(filter, affiliatesIdList)
+      ? await parseAffiliateOrdersFilters(filter, affiliates)
       : undefined
 
     return affiliatesOrders.searchRaw(pagination, fields, sort, where)
@@ -56,11 +43,11 @@ export const mutations = {
     const { getAllMDDocuments, saveToVBase, sendFileViaEmail } =
       new ExportMDSheetService('affiliatesOrders', ctx)
 
-    const { affiliateId } = ctx.state
+    const { affiliates } = ctx.clients
 
     const sort = sorting ? `${sorting.field} ${sorting.order}` : undefined
     const where = filter
-      ? parseAffiliateOrdersFilters(filter, affiliateId)
+      ? await parseAffiliateOrdersFilters(filter, affiliates)
       : undefined
 
     getAllMDDocuments(sort, where)
