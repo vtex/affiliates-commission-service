@@ -4,7 +4,7 @@ describe('parseAffiliateOrdersFilters', () => {
   const mockedContext = {
     clients: {
       affiliates: {
-        search: jest.fn(),
+        scroll: jest.fn(),
       },
     },
   } as unknown as Context
