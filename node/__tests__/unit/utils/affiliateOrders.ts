@@ -2,7 +2,7 @@ import { parseAffiliateOrdersFilters } from '../../../utils/filters'
 
 describe('parseAffiliateOrdersFilters', () => {
   const mockedFilter = {
-    affiliateId: 'mockedAffiliateId',
+    affiliateId: ['mockedAffiliateId'],
     status: 'mockedStatus',
     dateRange: {
       startDate: 'mockedStartDate',

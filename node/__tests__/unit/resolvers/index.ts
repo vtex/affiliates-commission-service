@@ -20,7 +20,7 @@ describe('affiliateOrders', () => {
     page: 1,
     pageSize: 100,
     filter: {
-      affiliateId: 'mockedAffiliateId',
+      affiliateId: ['mockedAffiliateId'],
     },
     sorting: {
       field: 'orderTotal',
@@ -40,7 +40,7 @@ describe('affiliateOrders', () => {
       },
       ['_all'],
       'orderTotal DESC',
-      parseAffiliateOrdersFilters({ affiliateId: 'mockedAffiliateId' })
+      parseAffiliateOrdersFilters({ affiliateId: ['mockedAffiliateId'] })
     )
   })
 })
