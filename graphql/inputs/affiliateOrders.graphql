@@ -1,5 +1,5 @@
 input AffiliateOrdersFilterInput {
-  affiliateId: String
+  affiliateId: [String]
   dateRange: DateRange
   status: String
 }
