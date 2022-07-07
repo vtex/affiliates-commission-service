@@ -9,8 +9,13 @@ export const parseAffiliateOrdersFilters = ({
   dateRange,
 }: AffiliateOrdersFilterInput) => {
   const filterArray: string[] = []
+  const affiliateIdFilter: string[] = []
 
-  affiliateId && filterArray.push(`affiliateId=${affiliateId}`)
+  if (affiliateId) {
+    affiliateId.map((id) => affiliateIdFilter.push(`affiliateId=${id}`))
+    filterArray.push(affiliateIdFilter.join(' OR '))
+  }
+
   status && filterArray.push(`status=${status}`)
   dateRange &&
     filterArray.push(

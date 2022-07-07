@@ -17,7 +17,7 @@ export async function getAffiliateOrdersAggregate(
   const { affiliatesOrdersAggregate } = ctx.clients
   const { logger } = ctx.vtex
   const parseObject = {
-    affiliateId,
+    affiliateId: typeof affiliateId === 'string' ? [affiliateId] : affiliateId,
     status,
     dateRange: { startDate, endDate },
   } as AffiliateOrdersFilterInput
