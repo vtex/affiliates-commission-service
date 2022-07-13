@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `affiliates-commission-service` typings version on `package.json`
+
 ## [0.23.0] - 2022-07-07
 
 ## [0.22.1] - 2022-06-23
