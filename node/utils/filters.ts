@@ -16,7 +16,16 @@ export const parseAffiliateOrdersFilters = ({
     filterArray.push(affiliateIdFilter.join(' OR '))
   }
 
-  status && filterArray.push(`status=${status}`)
+  if (status === 'cancel') {
+    filterArray.push('(status=canceled OR status=cancel)')
+  } else if (status === 'ongoing') {
+    filterArray.push(
+      '(status=payment-approved OR status=payment-pending OR status=on-order-completed)'
+    )
+  } else if (status) {
+    filterArray.push(`status=${status}`)
+  }
+
   dateRange &&
     filterArray.push(
       `(createdIn between ${dateRange.startDate} AND ${dateRange.endDate})`
