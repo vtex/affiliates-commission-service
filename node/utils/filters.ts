@@ -18,15 +18,11 @@ export const parseAffiliateOrdersFilters = ({
 
   if (status === 'cancel') {
     filterArray.push('(status=canceled OR status=cancel)')
-  }
-
-  if (status === 'ongoing') {
+  } else if (status === 'ongoing') {
     filterArray.push(
       '(status=payment-approved OR status=payment-pending OR status=on-order-completed)'
     )
-  }
-
-  if (status && status !== 'cancel' && status !== 'ongoing') {
+  } else if (status) {
     filterArray.push(`status=${status}`)
   }
 
