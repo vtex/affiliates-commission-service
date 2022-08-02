@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Fixed
+- export spreadsheet of Orders
+
+### Fixed
 
 - `affiliates-commission-service` typings version on `package.json`
 
