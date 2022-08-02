@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.23.2] - 2022-08-02
+
 ### Fixed
 - export spreadsheet of Orders
+
+## [0.23.1] - 2022-07-13
 
 ### Fixed
 
