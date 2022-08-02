@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Conditional added to the filter build function to not consider an empty array
+
 ## [1.0.0] - 2022-07-26
 
 ### Added
