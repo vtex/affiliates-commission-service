@@ -10,8 +10,9 @@ export const parseAffiliateOrdersFilters = ({
 }: AffiliateOrdersFilterInput) => {
   const filterArray: string[] = []
   const affiliateIdFilter: string[] = []
+  const emptyAffiliate = affiliateId?.includes('')
 
-  if (affiliateId) {
+  if (affiliateId && !emptyAffiliate) {
     affiliateId.map((id) => affiliateIdFilter.push(`affiliateId=${id}`))
     filterArray.push(affiliateIdFilter.join(' OR '))
   }
