@@ -19,3 +19,12 @@ enum AffiliateOrdersSortingField {
   orderTotal
   orderTotalCommission
 }
+
+enum StatusType {
+  ORDER_CREATED
+  PAYMENT_APPROVED
+  PAYMENT_PENDING
+  INVOICED
+  CANCEL
+  ONGOING
+}
