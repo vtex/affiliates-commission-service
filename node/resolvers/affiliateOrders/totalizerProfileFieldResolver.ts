@@ -53,7 +53,7 @@ export const totalizersProfileFieldResolver = async (
     const where = filter ? parseAffiliateOrdersFilters(filter) : ''
 
     const whereInvoiced = where
-      ? `${where} AND status=invoiced`
+      ? `${where} AND (status=invoiced OR status=invoice)`
       : 'status=invoiced'
 
     const invoicedValue = await affiliatesOrdersAggregate.aggregateValue(

@@ -35,6 +35,8 @@ export const parseAffiliateOrdersFilters = ({
     filterArray.push(
       '(status=payment-approved OR status=payment-pending OR status=on-order-completed)'
     )
+  } else if (finalStatus === 'invoiced') {
+    filterArray.push('(status=invoiced OR status=invoice)')
   } else if (finalStatus) {
     filterArray.push(`status=${finalStatus}`)
   }
