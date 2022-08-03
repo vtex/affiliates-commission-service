@@ -3,7 +3,7 @@ import type {
   CommissionsBySkuFilterInput,
 } from 'vtex.affiliates-commission-service'
 
-const StatusType = {
+export const StatusType = {
   ORDER_CREATED: 'order-created',
   PAYMENT_APPROVED: 'payment-approved',
   PAYMENT_PENDING: 'payment-pending',

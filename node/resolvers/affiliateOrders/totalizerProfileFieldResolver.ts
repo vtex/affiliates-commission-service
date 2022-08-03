@@ -1,6 +1,6 @@
 import type { QueryAffiliateOrdersArgs } from 'vtex.affiliates-commission-service'
 
-import { parseAffiliateOrdersFilters } from '../../utils/filters'
+import { parseAffiliateOrdersFilters, StatusType } from '../../utils/filters'
 
 export const totalizersProfileFieldResolver = async (
   args: Pick<QueryAffiliateOrdersArgs, 'filter'>,
@@ -9,8 +9,10 @@ export const totalizersProfileFieldResolver = async (
   const { filter } = args
   const { affiliatesOrdersAggregate } = ctx.clients
 
-  if (filter?.status === 'cancel') {
-    delete filter.status
+  const finalStatus = StatusType[filter?.status as keyof typeof StatusType]
+
+  if (finalStatus === 'cancel') {
+    delete filter?.status
     const where = filter ? parseAffiliateOrdersFilters(filter) : ''
     const whereCanceled = where
       ? `${where} AND (status=canceled OR status=cancel)`
@@ -28,8 +30,8 @@ export const totalizersProfileFieldResolver = async (
     }
   }
 
-  if (filter?.status === 'ongoing') {
-    delete filter.status
+  if (finalStatus === 'ongoing') {
+    delete filter?.status
     const where = filter ? parseAffiliateOrdersFilters(filter) : ''
 
     const whereOngoing = where
@@ -48,8 +50,8 @@ export const totalizersProfileFieldResolver = async (
     }
   }
 
-  if (filter?.status === 'invoiced') {
-    delete filter.status
+  if (finalStatus === 'invoiced') {
+    delete filter?.status
     const where = filter ? parseAffiliateOrdersFilters(filter) : ''
 
     const whereInvoiced = where
