@@ -8,8 +8,8 @@ export type AffiliateOrderExportingRow = {
   skuName: string
   price: number
   quantity: number
-  commission: number,
-  status: string | undefined,
+  commission: number
+  status: string | undefined
 }
 
 export const bucketNameForExporting = (type: MDEntityForExporting) =>

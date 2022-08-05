@@ -6311,9 +6311,9 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-"vtex.affiliates-commission-service@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.affiliates-commission-service@0.23.0/public/@types/vtex.affiliates-commission-service":
-  version "0.23.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.affiliates-commission-service@0.23.0/public/@types/vtex.affiliates-commission-service#e9d1842f59ba05f5d3513b524c4651bb009de6a3"
+"vtex.affiliates-commission-service@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.affiliates-commission-service@0.23.2/public/@types/vtex.affiliates-commission-service":
+  version "0.23.2"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.affiliates-commission-service@0.23.2/public/@types/vtex.affiliates-commission-service#2ecdd9f3c0d08c840fe5f3ddee300a4dc9ac3bc0"
 
 "vtex.spreadsheet-event-broadcaster@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.spreadsheet-event-broadcaster@0.2.0/public/@types/vtex.spreadsheet-event-broadcaster":
   version "0.2.0"

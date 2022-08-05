@@ -48,21 +48,25 @@ export class ExportMDSheetService {
   private formatAffiliateOrders = (page: AffiliatesOrders[]) => {
     const newPage: AffiliateOrderExportingRow[] = []
 
-    page.forEach(({ id, affiliateId, orderTotalCommission, orderItems, status }) => {
-      orderItems.forEach(({ skuId, skuName, price, quantity, commission }) => {
-        newPage.push({
-          id: `${id}`,
-          affiliateId,
-          orderTotalCommission: orderTotalCommission ?? 0,
-          skuId,
-          skuName,
-          price,
-          quantity,
-          commission,
-          status,
-        })
-      })
-    })
+    page.forEach(
+      ({ id, affiliateId, orderTotalCommission, orderItems, status }) => {
+        orderItems.forEach(
+          ({ skuId, skuName, price, quantity, commission }) => {
+            newPage.push({
+              id: `${id}`,
+              affiliateId,
+              orderTotalCommission: orderTotalCommission ?? 0,
+              skuId,
+              skuName,
+              price,
+              quantity,
+              commission,
+              status,
+            })
+          }
+        )
+      }
+    )
 
     return newPage
   }
