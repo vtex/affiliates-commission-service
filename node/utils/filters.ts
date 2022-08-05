@@ -12,8 +12,11 @@ export const parseAffiliateOrdersFilters = ({
   const affiliateIdFilter: string[] = []
 
   if (affiliateId) {
-    affiliateId.map((id) => id !== '' && affiliateIdFilter.push(`affiliateId=${id}`))
-    affiliateIdFilter.length !== 0 && filterArray.push(affiliateIdFilter.join(' OR '))
+    affiliateId.map(
+      (id) => id !== '' && affiliateIdFilter.push(`affiliateId=${id}`)
+    )
+    affiliateIdFilter.length !== 0 &&
+      filterArray.push(affiliateIdFilter.join(' OR '))
   }
 
   status && filterArray.push(`status=${status}`)
