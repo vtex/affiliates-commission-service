@@ -1,7 +1,7 @@
 {
   "name": "affiliates-commission-service",
   "vendor": "vtex",
-  "version": "0.23.2",
+  "version": "0.23.3",
   "title": "Affiliates commission service",
   "description": "App that handles all related to the commission of affiliates",
   "mustUpdateAt": "2018-01-04",
