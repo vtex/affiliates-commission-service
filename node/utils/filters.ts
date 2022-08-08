@@ -3,6 +3,15 @@ import type {
   CommissionsBySkuFilterInput,
 } from 'vtex.affiliates-commission-service'
 
+export const StatusType = {
+  ORDER_CREATED: 'order-created',
+  PAYMENT_APPROVED: 'payment-approved',
+  PAYMENT_PENDING: 'payment-pending',
+  INVOICED: 'invoiced',
+  CANCEL: 'cancel',
+  ONGOING: 'ongoing',
+}
+
 export const parseAffiliateOrdersFilters = ({
   affiliateId,
   status,
@@ -11,19 +20,25 @@ export const parseAffiliateOrdersFilters = ({
   const filterArray: string[] = []
   const affiliateIdFilter: string[] = []
 
+  const finalStatus = StatusType[status as keyof typeof StatusType]
+
   if (affiliateId) {
     affiliateId.map((id) => affiliateIdFilter.push(`affiliateId=${id}`))
-    filterArray.push(affiliateIdFilter.join(' OR '))
+    const joinaffiliateIdFilter = `(${affiliateIdFilter.join(' OR ')})`
+
+    filterArray.push(joinaffiliateIdFilter)
   }
 
-  if (status === 'cancel') {
+  if (finalStatus === 'cancel') {
     filterArray.push('(status=canceled OR status=cancel)')
-  } else if (status === 'ongoing') {
+  } else if (finalStatus === 'ongoing') {
     filterArray.push(
       '(status=payment-approved OR status=payment-pending OR status=on-order-completed)'
     )
-  } else if (status) {
-    filterArray.push(`status=${status}`)
+  } else if (finalStatus === 'invoiced') {
+    filterArray.push('(status=invoiced OR status=invoice)')
+  } else if (finalStatus) {
+    filterArray.push(`status=${finalStatus}`)
   }
 
   dateRange &&
