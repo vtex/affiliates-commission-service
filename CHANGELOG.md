@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0] - 2022-08-08
+
 ### Changed
 
 - Status input type on affiliateOrders is now an enum
