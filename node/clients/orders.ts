@@ -1,16 +1,17 @@
+import { JanusClient } from '@vtex/api'
 import type { InstanceOptions, IOContext, RequestConfig } from '@vtex/api'
 import type { OrderDetailResponse } from '@vtex/clients'
-import { Checkout } from '@vtex/clients'
 
 interface OrderDetailResponseExtended extends OrderDetailResponse {
   userProfileId: string
 }
 
 const routes = {
-  order: (orderId: string) => `/api/checkout/pvt/orders/${orderId}`,
+  order: (orderId: string) =>
+    `/api/dataentities/orders/${orderId}?_fields=_all`,
 }
 
-export default class CheckoutExtended extends Checkout {
+export default class MDOrders extends JanusClient {
   constructor(context: IOContext, options?: InstanceOptions) {
     super(context, {
       ...options,
