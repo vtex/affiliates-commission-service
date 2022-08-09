@@ -42,7 +42,7 @@ export async function parseData(
     const defaultCommission = await getDefaultCommission(apps)
 
     const orderItems = order.items.map((item) => {
-      const { id, skuName, imageUrl, sellingPrice, quantity } = item
+      const { id, name, imageUrl, sellingPrice, quantity } = item
       const skuCommission = commissions.data.find((sku) => sku.id === id)
       const commissionValue = skuCommission
         ? (skuCommission.commission as number)
@@ -52,7 +52,7 @@ export async function parseData(
 
       return {
         skuId: id,
-        skuName,
+        name,
         skuImageUrl: imageUrl,
         price: sellingPrice,
         quantity,
