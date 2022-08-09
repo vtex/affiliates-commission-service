@@ -34,6 +34,13 @@
       "name": "AcessaTodosPedidos"
     },
     {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/api/checkout/pvt/*"
+      }
+    },
+    {
       "name": "vbase-read-write",
       "attrs": {
         "bucket": "affiliate_orders"
