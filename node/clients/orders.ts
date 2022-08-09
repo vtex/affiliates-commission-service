@@ -8,7 +8,7 @@ interface OrderDetailResponseExtended extends OrderDetailResponse {
 
 const routes = {
   order: (orderId: string) =>
-    `/api/dataentities/orders/${orderId}?_fields=_all`,
+    `/api/dataentities/orders/documents/${orderId}?_fields=_all`,
 }
 
 export default class MDOrders extends JanusClient {

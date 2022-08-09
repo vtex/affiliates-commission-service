@@ -46,7 +46,7 @@ type OrderTotalsItem = {
 
 type OrderItem = {
   id: string
-  skuName: string
+  name: string
   imageUrl: string
   sellingPrice: number
   quantity: number
