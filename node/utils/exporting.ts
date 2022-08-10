@@ -9,6 +9,7 @@ export type AffiliateOrderExportingRow = {
   price: number
   quantity: number
   commission: number
+  status: string | undefined
 }
 
 export const bucketNameForExporting = (type: MDEntityForExporting) =>
@@ -16,7 +17,7 @@ export const bucketNameForExporting = (type: MDEntityForExporting) =>
 
 export const fieldsForExporting = (type: MDEntityForExporting) =>
   type === 'affiliatesOrders'
-    ? ['id', 'affiliateId', 'orderTotalCommission', 'orderItems']
+    ? ['id', 'affiliateId', 'orderTotalCommission', 'orderItems', 'status']
     : ['id', 'commission']
 
 export const PAGE_SIZE_FOR_EXPORTING = 1000
