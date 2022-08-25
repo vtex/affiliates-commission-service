@@ -3,10 +3,10 @@ export type MDEntityForExporting = 'affiliatesOrders' | 'commissionBySKU'
 export type AffiliateOrderExportingRow = {
   id: string
   affiliateId: string
-  orderTotalCommission: number
+  orderTotalCommission: string
   skuId: string
   skuName: string
-  price: number
+  price: string
   quantity: number
   commission: number
   status: string | undefined

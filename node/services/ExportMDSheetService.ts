@@ -45,8 +45,18 @@ export class ExportMDSheetService {
     )
   }
 
+  private FormatCommissionNumber = (price: number | undefined) => {
+    return Intl.NumberFormat(this.ctx.vtex.locale).format(
+      price ? Math.round(price) / 100 : 0
+    )
+  }
+
   private formatAffiliateOrders = (page: AffiliatesOrders[]) => {
     const newPage: AffiliateOrderExportingRow[] = []
+    const { FormatCommissionNumber } = this
+
+    // eslint-disable-next-line no-console
+    console.log(this.ctx.vtex.locale)
 
     page.forEach(
       ({ id, affiliateId, orderTotalCommission, orderItems, status }) => {
@@ -55,10 +65,11 @@ export class ExportMDSheetService {
             newPage.push({
               id: `${id}`,
               affiliateId,
-              orderTotalCommission: orderTotalCommission ?? 0,
+              orderTotalCommission:
+                FormatCommissionNumber(orderTotalCommission),
               skuId,
               skuName,
-              price,
+              price: FormatCommissionNumber(price),
               quantity,
               commission,
               status,
