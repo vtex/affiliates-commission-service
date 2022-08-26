@@ -55,9 +55,6 @@ export class ExportMDSheetService {
     const newPage: AffiliateOrderExportingRow[] = []
     const { FormatCommissionNumber } = this
 
-    // eslint-disable-next-line no-console
-    console.log(this.ctx.vtex.locale)
-
     page.forEach(
       ({ id, affiliateId, orderTotalCommission, orderItems, status }) => {
         orderItems.forEach(
