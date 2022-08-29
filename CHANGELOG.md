@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.3] - 2022-08-29
+
 ### Fixed
 - Formatting commission and price values to be exported
 
