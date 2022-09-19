@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.4] - 2022-09-19
+
 ### Added
 
 - Format `date-time` to orderDate on affiliatesOrders schema
