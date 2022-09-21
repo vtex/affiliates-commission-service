@@ -9,6 +9,12 @@ input DateRange {
   endDate: String!
 }
 
+input Affiliate {
+  id: ID
+  name: String
+  email: String
+}
+
 input AffiliateOrdersSortingInput {
   field: AffiliateOrdersSortingField!
   order: SortingOrder!

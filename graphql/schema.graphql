@@ -24,6 +24,7 @@ type Mutation {
   exportAffiliateOrders(
     filter: AffiliateOrdersFilterInput
     sorting: AffiliateOrdersSortingInput
+    affiliates: [Affiliate]
   ): Boolean
 
   exportCommissionsBySKU(
