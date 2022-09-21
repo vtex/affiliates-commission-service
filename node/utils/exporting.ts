@@ -5,6 +5,8 @@ export type AffiliateOrderExportingRow = {
   affiliateId: string
   orderTotalCommission: string
   skuId: string
+  name: string
+  email: string
   skuName: string
   price: string
   quantity: number
