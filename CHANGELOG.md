@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Simple explanation README added
+
+### Added
+
 - affiliate name and email to export orders table
 
 ## [2.0.4] - 2022-09-19
