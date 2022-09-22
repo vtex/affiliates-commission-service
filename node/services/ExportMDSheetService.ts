@@ -4,6 +4,7 @@ import type { MasterDataEntity } from '@vtex/clients'
 import type {
   AffiliatesOrders,
   CommissionBySKU,
+  Affiliate,
 } from 'vtex.affiliates-commission-service'
 
 import type {
@@ -51,12 +52,19 @@ export class ExportMDSheetService {
     )
   }
 
-  private formatAffiliateOrders = (page: AffiliatesOrders[]) => {
+  private formatAffiliateOrders = (
+    page: AffiliatesOrders[],
+    affiliates: Affiliate[]
+  ) => {
     const newPage: AffiliateOrderExportingRow[] = []
     const { FormatCommissionNumber } = this
 
     page.forEach(
       ({ id, affiliateId, orderTotalCommission, orderItems, status }) => {
+        const affiliate = affiliates.filter((item: Affiliate) => {
+          return item.id === affiliateId
+        })
+
         orderItems.forEach(
           ({ skuId, skuName, price, quantity, commission }) => {
             newPage.push({
@@ -65,6 +73,8 @@ export class ExportMDSheetService {
               orderTotalCommission:
                 FormatCommissionNumber(orderTotalCommission),
               skuId,
+              name: affiliate[0]?.name ?? '',
+              email: affiliate[0]?.email ?? '',
               skuName,
               price: FormatCommissionNumber(price),
               quantity,
@@ -79,7 +89,11 @@ export class ExportMDSheetService {
     return newPage
   }
 
-  public getAllMDDocuments = async (sort?: string, where?: string) => {
+  public getAllMDDocuments = async (
+    sort?: string,
+    where?: string,
+    affiliates?: Affiliate[]
+  ) => {
     const { MDClient, fields, formatAffiliateOrders } = this
     const pageSize = PAGE_SIZE_FOR_EXPORTING
     let MD_TOKEN = ''
@@ -99,7 +113,7 @@ export class ExportMDSheetService {
 
       responseData.push(
         this.entity === 'affiliatesOrders'
-          ? formatAffiliateOrders(data as AffiliatesOrders[])
+          ? formatAffiliateOrders(data as AffiliatesOrders[], affiliates ?? [])
           : data
       )
       // The first call is made without the token, then the first response gives us that token

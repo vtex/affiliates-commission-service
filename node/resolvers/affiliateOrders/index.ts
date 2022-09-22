@@ -3,6 +3,7 @@ import type {
   QueryAffiliateOrderArgs,
   QueryAffiliateOrdersArgs,
   MutationExportAffiliateOrdersArgs,
+  Affiliate,
 } from 'vtex.affiliates-commission-service'
 
 import { ExportMDSheetService } from '../../services/ExportMDSheetService'
@@ -34,7 +35,7 @@ export const queries = {
 export const mutations = {
   exportAffiliateOrders: async (
     _: unknown,
-    { filter, sorting }: MutationExportAffiliateOrdersArgs,
+    { filter, sorting, affiliates }: MutationExportAffiliateOrdersArgs,
     ctx: Context
   ) => {
     const { getAllMDDocuments, saveToVBase, sendFileViaEmail } =
@@ -43,7 +44,7 @@ export const mutations = {
     const sort = sorting ? `${sorting.field} ${sorting.order}` : undefined
     const where = filter ? parseAffiliateOrdersFilters(filter) : undefined
 
-    getAllMDDocuments(sort, where)
+    getAllMDDocuments(sort, where, affiliates as Affiliate[])
       .then((documents) => saveToVBase(documents))
       .then((fileName) => sendFileViaEmail(fileName))
 
