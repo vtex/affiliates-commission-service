@@ -60,7 +60,14 @@ export class ExportMDSheetService {
     const { FormatCommissionNumber } = this
 
     page.forEach(
-      ({ id, affiliateId, orderTotalCommission, orderItems, status }) => {
+      ({
+        id,
+        affiliateId,
+        orderTotalCommission,
+        orderItems,
+        status,
+        orderDate,
+      }) => {
         const affiliate = affiliates.filter((item: Affiliate) => {
           return item.id === affiliateId
         })
@@ -80,6 +87,9 @@ export class ExportMDSheetService {
               quantity,
               commissionPercentual: commission,
               status,
+              orderDate: orderDate
+                ? new Date(orderDate).toLocaleDateString()
+                : undefined,
             })
           }
         )
