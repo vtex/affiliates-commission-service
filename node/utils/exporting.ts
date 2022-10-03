@@ -10,7 +10,7 @@ export type AffiliateOrderExportingRow = {
   skuName: string
   price: string
   quantity: number
-  commission: number
+  commissionPercentual: number
   status: string | undefined
 }
 

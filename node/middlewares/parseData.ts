@@ -60,7 +60,13 @@ export async function parseData(
       }
     })
 
-    const orderTotal = order.totals.find((total) => total.id === 'Items')?.value
+    const totalItems =
+      order.totals.find((total) => total.id === 'Items')?.value ?? 0
+
+    const totalDiscount =
+      order.totals.find((total) => total.id === 'Discounts')?.value ?? 0
+
+    const orderTotal = totalItems - totalDiscount
 
     const affiliateOrder = {
       id: order.orderId,

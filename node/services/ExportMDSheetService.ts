@@ -78,7 +78,7 @@ export class ExportMDSheetService {
               skuName,
               price: FormatCommissionNumber(price),
               quantity,
-              commission,
+              commissionPercentual: commission,
               status,
             })
           }
