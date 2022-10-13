@@ -85,7 +85,7 @@ export class ExportMDSheetService {
               skuName,
               price: FormatCommissionNumber(price),
               quantity,
-              commissionPercentual: commission,
+              commissionPercentual: commission / 100,
               status,
               orderDate: orderDate
                 ? new Date(orderDate).toLocaleDateString()
