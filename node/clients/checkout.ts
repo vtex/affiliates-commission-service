@@ -7,7 +7,7 @@ interface OrderDetailResponseExtended extends OrderDetailResponse {
 }
 
 const routes = {
-  order: (orderId: string) => `/api/checkout/pvt/orders/${orderId}`
+  order: (orderId: string) => `/api/checkout/pvt/orders/${orderId}`,
 }
 
 export default class CheckoutExtended extends Checkout {
