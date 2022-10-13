@@ -66,7 +66,7 @@ export async function parseData(
     const totalDiscount =
       order.totals.find((total) => total.id === 'Discounts')?.value ?? 0
 
-    const orderTotal = totalItems - totalDiscount
+    const orderTotals = totalItems + totalDiscount
 
     const affiliateOrder = {
       id: order.orderId,
@@ -76,7 +76,7 @@ export async function parseData(
       orderDate: order.creationDate,
       orderItems,
       orderTotalCommission,
-      orderTotal,
+      orderTotal: orderTotals,
     }
 
     state.affiliateOrder = affiliateOrder
