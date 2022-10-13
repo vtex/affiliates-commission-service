@@ -6,13 +6,18 @@ import { CUSTOM_DATA_APP_ID } from '../utils/constants'
 
 // This middleware will validade if the order has a customData affiliateId
 export async function validateOrder(
-  { body, clients: { orders }, state, vtex: { logger } }: EventContext<Clients>,
+  {
+    body,
+    clients: { checkout },
+    state,
+    vtex: { logger },
+  }: EventContext<Clients>,
   next: () => Promise<unknown>
 ) {
   const { orderId } = body
 
   try {
-    const order = await orders.order(orderId)
+    const order = await checkout.order(orderId)
     const { customData } = order
 
     const affiliateApp = customData?.customApps?.find(
