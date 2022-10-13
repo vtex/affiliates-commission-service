@@ -13,7 +13,7 @@ describe('validateOrder middleware', () => {
         orderId: 'orderId',
       },
       clients: {
-        orders: {
+        checkout: {
           order: jest.fn().mockResolvedValueOnce({
             customData: {
               customApps: [
@@ -45,7 +45,7 @@ describe('validateOrder middleware', () => {
         orderId: 'orderId',
       },
       clients: {
-        orders: {
+        checkout: {
           order: jest.fn().mockResolvedValueOnce({
             customData: {
               customApps: [
@@ -77,7 +77,7 @@ describe('validateOrder middleware', () => {
         orderId: 'orderId',
       },
       clients: {
-        orders: {
+        checkout: {
           order: jest.fn().mockRejectedValueOnce(new Error('Error')),
         },
       },

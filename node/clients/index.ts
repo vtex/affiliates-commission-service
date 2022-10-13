@@ -6,7 +6,7 @@ import type {
 } from 'vtex.affiliates-commission-service'
 
 import AuthenticationClient from './authenticationClient'
-import MDOrders from './orders'
+import CheckoutExtended from './checkout'
 import { masterDataAggregateFor } from './masterDataAggegations/masterDataAggregationsFactory'
 import MessageCenterClient from './messageCenter'
 import { SpreadsheetEventBroadcasterClient } from './spreadsheetEventBroadcaster'
@@ -34,8 +34,8 @@ export class Clients extends IOClients {
     )
   }
 
-  public get orders() {
-    return this.getOrSet('orders', MDOrders)
+  public get checkout() {
+    return this.getOrSet('checkout', CheckoutExtended)
   }
 
   public get catalog() {

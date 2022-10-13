@@ -23,9 +23,7 @@ export const parseAffiliateOrdersFilters = ({
   const finalStatus = StatusType[status as keyof typeof StatusType]
 
   if (affiliateId) {
-    affiliateId.map(
-      (id) => id !== '' && affiliateIdFilter.push(`affiliateId=${id}`)
-    )
+    affiliateId.map((id) => affiliateIdFilter.push(`affiliateId=${id}`))
     const joinaffiliateIdFilter = `(${affiliateIdFilter.join(' OR ')})`
 
     filterArray.push(joinaffiliateIdFilter)
