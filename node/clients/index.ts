@@ -20,6 +20,10 @@ export class Clients extends IOClients {
     )
   }
 
+  public get logSKUErrors() {
+    return this.getOrSet('logSKUErrors', masterDataFor('logSKUErrors'))
+  }
+
   public get commissionBySKU() {
     return this.getOrSet(
       'commissionBySKU',

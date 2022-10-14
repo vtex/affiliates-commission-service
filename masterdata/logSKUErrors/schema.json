@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "LogSKUErrors",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "notFound": {
+      "type": "boolean"
+    }
+  },
+  "required": ["id", "success", "notFound"],
+  "v-indexed": ["id", "notFound", "success"],
+  "v-cache": false
+}

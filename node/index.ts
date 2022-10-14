@@ -22,6 +22,7 @@ import { getExportedComissionsBySKU } from './middlewares/exporting/getExportedC
 import { setCommissionEventHandler } from './middlewares/commission/setCommissionEventHandler'
 import { getAffiliateOrdersAggregate } from './middlewares/getAffiliateOrdersAggregate'
 import { getLastImportedFile } from './middlewares/commission/getLastImportedFile'
+import { validateSKUId } from './middlewares/commission/validateSKUId'
 
 const TIMEOUT_MS = 2 * 1000
 
@@ -78,7 +79,7 @@ export default new Service({
   events: {
     onAppInstalled: [createEmailTemplates],
     setAffiliatesOrders: [validateOrder, parseData, saveOrUpdateAffiliateOrder],
-    setCommissionBySKU: [setCommissionEventHandler],
+    setCommissionBySKU: [validateSKUId, setCommissionEventHandler],
     updateOrderStatus: [validateOrder, getAffiliateOrder, updateOrderStatus],
     updateInvoicedOrder: [
       validateOrder,
