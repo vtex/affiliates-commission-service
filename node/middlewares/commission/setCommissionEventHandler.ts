@@ -12,18 +12,20 @@ export async function setCommissionEventHandler(
       data: { id, commission, refId },
       senderAppId,
     },
-    clients: { commissionBySKU },
+    clients: { commissionBySKU, catalog },
   } = ctx
 
   if (senderAppId !== 'vtex.affiliates-commission-service') return
 
   try {
+    await catalog.getSkuById(id)
     await commissionBySKU.saveOrUpdate({
       id: String(id),
       commission,
       refId: refId && String(refId),
     })
   } catch (error) {
+    if (error?.response?.status === HTTP_ERRORS.notFound.status) return
     if (error?.response?.status !== HTTP_ERRORS.noChanges.status) throw error
   }
 
