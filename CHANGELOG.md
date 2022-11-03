@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- SKU Not Found validation added
+
+
 ## [2.2.0] - 2022-10-13
 
 ### Fixed
