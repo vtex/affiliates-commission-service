@@ -12,7 +12,7 @@ export async function setCommissionEventHandler(
       data: { id, commission, refId },
       senderAppId,
     },
-    clients: { commissionBySKU, catalog },
+    clients: { commissionBySKU, catalog, vbase },
   } = ctx
 
   if (senderAppId !== 'vtex.affiliates-commission-service') return
@@ -25,7 +25,9 @@ export async function setCommissionEventHandler(
       refId: refId && String(refId),
     })
   } catch (error) {
-    if (error?.response?.status === HTTP_ERRORS.notFound.status) return
+    if (error?.response?.status === HTTP_ERRORS.notFound.status){
+      vbase.saveJSON('not-found',"notfound", {notFound: id})
+    }
     if (error?.response?.status !== HTTP_ERRORS.noChanges.status) throw error
   }
 

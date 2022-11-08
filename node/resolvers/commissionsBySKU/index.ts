@@ -28,6 +28,17 @@ export const queries = {
     __: unknown,
     { clients: { vbase } }: Context
   ) => vbase.getJSON('last-import', 'info'),
+  getNotFoundCommissions: async(
+    _: unknown,
+    __: unknown,
+    { clients: { vbase } }: Context
+  ) => {
+    const response: {notFound: number | string} = await vbase.getJSON('not-found', 'notfound')
+    if(response?.notFound){
+      return true
+    }
+    return false
+  }
 }
 
 export const mutations = {
@@ -83,6 +94,17 @@ export const mutations = {
 
     return true
   },
+  deleteNotFounds: async(
+    _: unknown,
+    __: unknown,
+    { clients: { vbase } }: Context
+  ) => {
+    await vbase.saveJSON('not-found',"notfound",{})
+    .then(() => {return true})
+    .catch((error) => {
+      throw error
+    })
+  }
 }
 
 export const fieldResolvers = {

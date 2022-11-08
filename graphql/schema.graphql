@@ -16,6 +16,7 @@ type Query {
   ): CommissionsBySKUPage
 
   lastImportedCommissionFileInfo: ImportedCommissionsFileInfo
+  getNotFoundCommissions: Boolean
 }
 
 type Mutation {
@@ -33,6 +34,7 @@ type Mutation {
   ): Boolean
 
   importCommissionsBySKU(file: Upload!): Boolean
+  deleteNotFounds: Boolean
 }
 
 scalar File
