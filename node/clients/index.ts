@@ -10,6 +10,7 @@ import CheckoutExtended from './checkout'
 import { masterDataAggregateFor } from './masterDataAggegations/masterDataAggregationsFactory'
 import MessageCenterClient from './messageCenter'
 import { SpreadsheetEventBroadcasterClient } from './spreadsheetEventBroadcaster'
+import Schemas from './schemas'
 
 // Extend the default IOClients implementation with our own custom clients.
 export class Clients extends IOClients {
@@ -55,5 +56,9 @@ export class Clients extends IOClients {
       'spreadsheetEventBroadcaster',
       SpreadsheetEventBroadcasterClient
     )
+  }
+
+  public get schemas() {
+    return this.getOrSet('schemas', Schemas)
   }
 }

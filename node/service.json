@@ -29,6 +29,10 @@
     "exportCommissionBySKU": {
       "path": "/_v/export/commissionBySKU/:fileName",
       "public": true
+    },
+    "updateStoreCommission": {
+      "path": "/_v/updateStoreCommission",
+      "public": true
     }
   },
   "events": {

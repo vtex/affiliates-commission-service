@@ -74,3 +74,15 @@ export const HTTP_ERRORS = {
 
 export const MD_READ_PERMISSION = 'READONLY_USER_DS'
 export const MAIN_APP_ID = 'vtex.affiliates'
+
+export const AFFILIATES_COMMISSION_SERVICE_VERSIONS = [
+  process.env.VTEX_APP_VERSION ?? '',
+  '2.2.1',
+  '2.2.0',
+  '2.1.2',
+]
+
+export const COMMISSIONS_ENTITY =
+  'vtex_affiliates_commission_service_commissionBySKU'
+export const AFFILIATES_ORDERS_ENTITY =
+  'vtex_affiliates_commission_service_affiliatesOrders'

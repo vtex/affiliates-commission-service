@@ -22,6 +22,7 @@ import { getExportedComissionsBySKU } from './middlewares/exporting/getExportedC
 import { setCommissionEventHandler } from './middlewares/commission/setCommissionEventHandler'
 import { getAffiliateOrdersAggregate } from './middlewares/getAffiliateOrdersAggregate'
 import { getLastImportedFile } from './middlewares/commission/getLastImportedFile'
+import { updateStore } from './middlewares/updateSchemas'
 
 const TIMEOUT_MS = 2 * 1000
 
@@ -73,6 +74,9 @@ export default new Service({
     }),
     exportCommissionBySKU: method({
       GET: [getExportedComissionsBySKU],
+    }),
+    updateStoreCommission: method({
+      GET: [updateStore],
     }),
   },
   events: {
