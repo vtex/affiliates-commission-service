@@ -13,7 +13,6 @@ export abstract class MasterDataEntity extends JanusClient {
   ): Promise<AggregateResponse>
 }
 
-const GLOBAL = ''
 /**
  * This is necessary since masterdata does not accept special characters on entity name
  * This function replaces `.` and `-` for `_`
@@ -21,11 +20,9 @@ const GLOBAL = ''
  */
 const normalizeEntityName = (str: string) => str.replace(/(\.)|-|:/gi, '_')
 
-const versionDescriptor = (isProduction: boolean, workspace: string) =>
-  isProduction ? GLOBAL : `-${workspace}`
-
 export const masterDataAggregateFor = (
-  entityName: string
+  entityName: string,
+  schemaVersion: string
 ): new (context: IOContext, options?: InstanceOptions) => MasterDataEntity => {
   return class extends MasterDataEntity {
     public dataEntity: string
@@ -36,10 +33,7 @@ export const masterDataAggregateFor = (
       const app = parseAppId(process.env.VTEX_APP_ID as string)
 
       this.inner = new MasterDataAggregations(ctx, options)
-      this.schema = `${app.version}${versionDescriptor(
-        ctx.production,
-        ctx.workspace
-      )}`
+      this.schema = `${schemaVersion}`
       this.dataEntity = normalizeEntityName(`${app.name}_${entityName}`)
     }
 
