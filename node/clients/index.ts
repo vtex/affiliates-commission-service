@@ -1,10 +1,7 @@
 import { IOClients } from '@vtex/api'
 import { masterDataFor, Catalog } from '@vtex/clients'
-import type {
-  AffiliatesOrders,
-  CommissionBySKU,
-} from 'vtex.affiliates-commission-service'
 
+import type { AffiliatesOrders, CommissionBySKU } from '../typings/commission'
 import AuthenticationClient from './authenticationClient'
 import CheckoutExtended from './checkout'
 import { masterDataAggregateFor } from './masterDataAggegations/masterDataAggregationsFactory'

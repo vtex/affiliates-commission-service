@@ -1,11 +1,11 @@
 import type {
-  CommissionBySKU,
   QueryCommissionsBySkuArgs,
   MutationExportCommissionsBySkuArgs,
   MutationUpdateCommissionArgs,
   MutationImportCommissionsBySkuArgs,
 } from 'vtex.affiliates-commission-service'
 
+import type { CommissionBySKU } from '../../typings/commission'
 import { ExportMDSheetService } from '../../services/ExportMDSheetService'
 import { parseCommissionsBySKUFilters } from '../../utils/filters'
 import { ImportCommissionsService } from '../../services/ImportCommissionsService'

@@ -1,11 +1,11 @@
 import type {
-  AffiliatesOrders,
   QueryAffiliateOrderArgs,
   QueryAffiliateOrdersArgs,
   MutationExportAffiliateOrdersArgs,
   Affiliate,
 } from 'vtex.affiliates-commission-service'
 
+import type { AffiliatesOrders } from '../../typings/commission'
 import { ExportMDSheetService } from '../../services/ExportMDSheetService'
 import { parseAffiliateOrdersFilters } from '../../utils/filters'
 import { totalizersProfileFieldResolver } from './totalizerProfileFieldResolver'
