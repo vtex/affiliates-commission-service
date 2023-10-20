@@ -1,12 +1,9 @@
 import { stream, utils } from 'xlsx'
 import { v4 as uuid } from 'uuid'
 import type { MasterDataEntity } from '@vtex/clients'
-import type {
-  AffiliatesOrders,
-  CommissionBySKU,
-  Affiliate,
-} from 'vtex.affiliates-commission-service'
+import type { Affiliate } from 'vtex.affiliates-commission-service'
 
+import type { AffiliatesOrders, CommissionBySKU } from '../typings/commission'
 import type {
   AffiliateOrderExportingRow,
   MDEntityForExporting,

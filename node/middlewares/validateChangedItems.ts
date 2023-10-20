@@ -1,6 +1,6 @@
 import type { EventContext } from '@vtex/api'
-import type { AffiliatesOrders } from 'vtex.affiliates-commission-service'
 
+import type { AffiliatesOrders } from '../typings/commission'
 import type { Clients } from '../clients'
 import { CommissionBySKUService } from '../services/CommissionBySKUService'
 import type {
