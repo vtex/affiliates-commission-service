@@ -23,7 +23,7 @@ import { setCommissionEventHandler } from './middlewares/commission/setCommissio
 import { getAffiliateOrdersAggregate } from './middlewares/getAffiliateOrdersAggregate'
 import { getLastImportedFile } from './middlewares/commission/getLastImportedFile'
 
-const TIMEOUT_MS = 2 * 1000
+const TIMEOUT_MS = 60 * 1000
 
 // This is the configuration for clients available in `ctx.clients`.
 const clients: ClientsConfig<Clients> = {
