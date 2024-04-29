@@ -2,6 +2,8 @@
 
 # Service Example
 
+> ⚠️ This app is no longer maintained by VTEX. This means support and maintenance are no longer provided.
+
 A reference app implementing a VTEX IO service with HTTP route handlers.
 
 ![Service Example Architecture](https://user-images.githubusercontent.com/18706156/77381360-72489680-6d5c-11ea-9da8-f4f03b6c5f4c.jpg)
