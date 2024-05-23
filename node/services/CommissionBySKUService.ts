@@ -27,8 +27,8 @@ export class CommissionBySKUService {
       this.commissionData.map(({ id }) =>
         this.commissionClient
           .get(id, commissionServiceFieldsForMDGet)
-          .then((document) => data.push(document))
-          .catch((error) => errors.push({ id, message: error.message }))
+          .then((document: any) => data.push(document))
+          .catch((error: any) => errors.push({ id, message: error.message }))
       )
     )
 
@@ -48,7 +48,7 @@ export class CommissionBySKUService {
         this.commissionClient
           .saveOrUpdate(commissionInfo)
           .catch(
-            (error) =>
+            (error: any) =>
               error?.response?.status !== MD_NO_CHANGES_ERROR_STATUS &&
               errors.push({ id: commissionInfo.id, message: error.message })
           )
@@ -65,7 +65,7 @@ export class CommissionBySKUService {
       this.commissionData.map(({ id }) =>
         this.commissionClient
           .delete(id)
-          .catch((error) => errors.push({ id, message: error.message }))
+          .catch((error: any) => errors.push({ id, message: error.message }))
       )
     )
 
