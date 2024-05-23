@@ -16,14 +16,14 @@ export class Clients extends IOClients {
   public get affiliatesOrders() {
     return this.getOrSet(
       'affiliatesOrders',
-      masterDataFor<AffiliatesOrders>('affiliatesOrders')
+      masterDataFor<AffiliatesOrders>('affiliatesOrders', undefined, 2)
     )
   }
 
   public get commissionBySKU() {
     return this.getOrSet(
       'commissionBySKU',
-      masterDataFor<CommissionBySKU>('commissionBySKU')
+      masterDataFor<CommissionBySKU>('commissionBySKU', undefined, 2)
     )
   }
 

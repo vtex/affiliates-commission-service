@@ -1,9 +1,7 @@
 import { stream, utils } from 'xlsx'
 import { v4 as uuid } from 'uuid'
-import type { MasterDataEntity } from '@vtex/clients'
 import type {
   AffiliatesOrders,
-  CommissionBySKU,
   Affiliate,
 } from 'vtex.affiliates-commission-service'
 
@@ -23,7 +21,7 @@ import { emailTemplateName } from '../utils/email'
 export class ExportMDSheetService {
   private entity: MDEntityForExporting
   private ctx: Context
-  private MDClient: MasterDataEntity<AffiliatesOrders | CommissionBySKU>
+  private MDClient: any
   private bucketName: string
   private fields: string[]
   private templateName: string
