@@ -41,10 +41,7 @@
       }
     },
     {
-      "name": "vbase-read-write",
-      "attrs": {
-        "bucket": "affiliate_orders"
-      }
+      "name": "vbase-read-write"
     },
     {
       "name": "template-criar"
